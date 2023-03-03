@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Systems">
+      <UniqueIdentifier>{a708a48a-ccf1-4e5a-989d-a69598a31cd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers">
+      <UniqueIdentifier>{5795bb0d-93e2-4d74-b6f4-e6cd7aee9629}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{fcd1a571-727f-4ec6-8fb3-865aed6636f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{6dbf4f4b-b535-4c8f-89fe-b3e460df4c52}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\components\organization.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\record.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\relationship.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\renown.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\reputation.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\skill.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\trait.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\age.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\attributes.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\name.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\nationality.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\player.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\manager.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\staff.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\team.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\tournamentOrganizer.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\sponsor.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\description.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\country.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\media.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\community.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\match.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\practice.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\time_slot.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\helpers\generator.hpp">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\timestamp.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\csgocore.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\helpers\generator.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\csgocore.cpp" />
+  </ItemGroup>
+</Project>
