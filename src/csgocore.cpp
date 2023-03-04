@@ -1,7 +1,12 @@
 #include "csgocore.hpp"
+#include "pch.h"
 
 bool vp::csgocore::initialize() const noexcept
 {
+    plog::init(plog::verbose, "verbose.txt");
+
+    LOG_INFO << "Initializing core engine...";
+
     return load_configuration() && load_resources();
 }
 
