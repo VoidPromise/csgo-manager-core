@@ -2,7 +2,7 @@
 
 #include <filesystem>
 
-#include "entt.hpp"
+#include "pch.h"
 
 namespace vp
 {
@@ -25,6 +25,9 @@ class csgocore
 
     // Initialize all necessary resources.
     [[nodiscard]] bool initialize() const noexcept;
+
+    // Initialize all necessary resources.
+    [[nodiscard]] void new_game() noexcept;
 
     // Load a saved state from filesystem,
     [[nodiscard]] bool load_state(
