@@ -24,6 +24,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        path: csgo-manager-core
 
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
@@ -38,7 +40,7 @@ jobs:
         repository: VoidPromise/third-party
         ref: master
         token: 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
-        path: ..\\third-party
+        path: third-party
         
     - name: Checkout Name Generator
       uses: actions/checkout@v3.3.0
@@ -46,7 +48,7 @@ jobs:
         repository: VoidPromise/name-generator
         ref: main
         token: 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
-        path: ..\\name-generator
+        path: name-generator
         
     - name: Checkout Nickname Generator
       uses: actions/checkout@v3.3.0
@@ -54,10 +56,10 @@ jobs:
         repository: VoidPromise/nickname-generator
         ref: main
         token: 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
-        path: ..\\nickname-generator
+        path: nickname-generator
 
     - name: Build
-      working-directory: ${{env.GITHUB_WORKSPACE}}
+      working-directory: ${{env.GITHUB_WORKSPACE}}/csgo-manager-core
       # Add additional options to the MSBuild command line here (like platform or verbosity level).
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
