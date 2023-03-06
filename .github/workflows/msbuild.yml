@@ -35,21 +35,24 @@ jobs:
     - name: Checkout Third-Party
       uses: actions/checkout@v3.3.0
       with:
-        repository: VoidPromise/third-party@master
+        repository: VoidPromise/third-party
+        ref: master
         token: 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
         path: third-party
         
     - name: Checkout Name Generator
       uses: actions/checkout@v3.3.0
       with:
-        repository: VoidPromise/name-generator@main
+        repository: VoidPromise/name-generator
+        ref: main
         token: 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
         path: name-generator
         
     - name: Checkout Nickname Generator
       uses: actions/checkout@v3.3.0
       with:
-        repository: VoidPromise/nickname-generator@main
+        repository: VoidPromise/nickname-generator
+        ref: main
         token: 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
         path: nickname-generator
 
