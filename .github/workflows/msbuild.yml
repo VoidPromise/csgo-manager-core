@@ -35,17 +35,17 @@ jobs:
     - name: Checkout Third-Party
       uses: actions/checkout@v3.3.0
       with:
-        repositories: VoidPromise/third-party
+        repository: VoidPromise/third-party
         
     - name: Checkout Name Generator
       uses: actions/checkout@v3.3.0
       with:
-        repositories: VoidPromise/name-generator
+        repository: VoidPromise/name-generator
         
     - name: Checkout Nickname Generator
       uses: actions/checkout@v3.3.0
       with:
-        repositories: VoidPromise/nickname-generator
+        repository: VoidPromise/nickname-generator
 
     - name: Build
       working-directory: ${{env.GITHUB_WORKSPACE}}
