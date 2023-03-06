@@ -91,11 +91,17 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="src\csgocore.hpp" />
+    <ClInclude Include="src\utilities\wstringutils.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\helpers\generator.cpp">
       <Filter>Helpers</Filter>
     </ClCompile>
     <ClCompile Include="src\csgocore.cpp" />
+    <ClCompile Include="src\utilities\wstringutils.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -175,6 +175,9 @@
     <ProjectReference Include="..\..\nickname-generator\nickname-generator.vcxproj">
       <Project>{05d13c85-8dc0-4050-8c9e-8b6e7919ef42}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\third-party\third-party.vcxproj">
+      <Project>{f1e85fc6-f717-4e42-b97f-dd50628e11a5}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\csgo-manager-core.vcxproj">
       <Project>{9b5a1266-aff0-432a-9597-8e142eb9e4fe}</Project>
     </ProjectReference>

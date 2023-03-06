@@ -45,10 +45,12 @@
     <ClInclude Include="src\components\trait.hpp" />
     <ClInclude Include="src\csgocore.hpp" />
     <ClInclude Include="src\helpers\generator.hpp" />
+    <ClInclude Include="src\utilities\wstringutils.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\csgocore.cpp" />
     <ClCompile Include="src\helpers\generator.cpp" />
+    <ClCompile Include="src\utilities\wstringutils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\name-generator\name-generator.vcxproj">
@@ -117,11 +119,13 @@
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <EnableClangTidyCodeAnalysis>true</EnableClangTidyCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <AllProjectIncludesArePublic>true</AllProjectIncludesArePublic>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <EnableClangTidyCodeAnalysis>true</EnableClangTidyCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <AllProjectIncludesArePublic>true</AllProjectIncludesArePublic>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
