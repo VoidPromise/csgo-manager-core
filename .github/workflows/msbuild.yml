@@ -36,16 +36,22 @@ jobs:
       uses: actions/checkout@v3.3.0
       with:
         repository: VoidPromise/third-party
+        token: ${{ secrets.GH_PATH }}
+        path: third-party
         
     - name: Checkout Name Generator
       uses: actions/checkout@v3.3.0
       with:
         repository: VoidPromise/name-generator
+        token: ${{ secrets.GH_PATH }}
+        path: name-generator
         
     - name: Checkout Nickname Generator
       uses: actions/checkout@v3.3.0
       with:
         repository: VoidPromise/nickname-generator
+        token: ${{ secrets.GH_PATH }}
+        path: nickname-generator
 
     - name: Build
       working-directory: ${{env.GITHUB_WORKSPACE}}
