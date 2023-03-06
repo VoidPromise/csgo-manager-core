@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "name-generator", "..\name-g
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nickname-generator", "..\nickname-generator\nickname-generator.vcxproj", "{05D13C85-8DC0-4050-8C9E-8B6E7919EF42}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "csgo-core-unit-tests", "csgo-core-unit-tests\csgo-core-unit-tests.vcxproj", "{4CE509C3-8B4D-4B0D-AFE6-1B0708750BF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{05D13C85-8DC0-4050-8C9E-8B6E7919EF42}.Release|x64.Build.0 = Release|x64
 		{05D13C85-8DC0-4050-8C9E-8B6E7919EF42}.Release|x86.ActiveCfg = Release|Win32
 		{05D13C85-8DC0-4050-8C9E-8B6E7919EF42}.Release|x86.Build.0 = Release|Win32
+		{4CE509C3-8B4D-4B0D-AFE6-1B0708750BF4}.Debug|x64.ActiveCfg = Debug|x64
+		{4CE509C3-8B4D-4B0D-AFE6-1B0708750BF4}.Debug|x64.Build.0 = Debug|x64
+		{4CE509C3-8B4D-4B0D-AFE6-1B0708750BF4}.Debug|x86.ActiveCfg = Debug|Win32
+		{4CE509C3-8B4D-4B0D-AFE6-1B0708750BF4}.Debug|x86.Build.0 = Debug|Win32
+		{4CE509C3-8B4D-4B0D-AFE6-1B0708750BF4}.Release|x64.ActiveCfg = Release|x64
+		{4CE509C3-8B4D-4B0D-AFE6-1B0708750BF4}.Release|x64.Build.0 = Release|x64
+		{4CE509C3-8B4D-4B0D-AFE6-1B0708750BF4}.Release|x86.ActiveCfg = Release|Win32
+		{4CE509C3-8B4D-4B0D-AFE6-1B0708750BF4}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
