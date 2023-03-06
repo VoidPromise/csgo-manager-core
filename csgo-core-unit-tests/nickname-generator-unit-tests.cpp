@@ -15,7 +15,7 @@ TEST_CLASS (nicknamegenerator)
 
     TEST_CLASS_INITIALIZE(LoadResourcesFolder)
     {
-        std::string nickname_resource_dir = PROJECTS_FOLDER;
+        std::string nickname_resource_dir{PROJECTS_FOLDER};
         nickname_resource_dir.append(R"(nickname-generator\resources)");
 
         Logger::WriteMessage("Setting up the resources folder for "
@@ -32,9 +32,9 @@ TEST_CLASS (nicknamegenerator)
                                L"Failed to create temp directory");
             }
 
-            std::filesystem::copy(
-                nickname_resource_dir, _current_path / R"(resources/nickname)",
-                std::filesystem::copy_options::overwrite_existing);
+            std::filesystem::copy(nickname_resource_dir,
+                                  _current_path / R"(resources/nickname)",
+                                  std::filesystem::copy_options::recursive);
 
             Assert::IsTrue(
                 std::filesystem::exists(_current_path /
@@ -50,10 +50,10 @@ TEST_CLASS (nicknamegenerator)
         }
         catch (std::exception& e)
         {
-            Assert::Fail(L"Failed to setup resources folder");
-
             Logger::WriteMessage("Failure setting up the resources folder for "
                                  "nickname generator tests");
+
+            Assert::Fail(L"Failed to setup resources folder");
         }
     }
 
@@ -78,8 +78,8 @@ TEST_CLASS (nicknamegenerator)
 
             std::wstring name{original_name};
 
-            const std::wstring nickname =
-                vp::helper::nng::instance().get_nickname(name);
+            const std::wstring nickname{
+                vp::helper::nng::instance().get_nickname(name)};
 
             Logger::WriteMessage(
                 (std::string("Original name: ") +
@@ -110,8 +110,8 @@ TEST_CLASS (nicknamegenerator)
         {
             std::wstring random_word{L""};
 
-            const std::wstring nickname =
-                vp::helper::nng::instance().get_nickname(random_word);
+            const std::wstring nickname{
+                vp::helper::nng::instance().get_nickname(random_word)};
 
             Logger::WriteMessage(
                 (std::string("Random word: ") +
@@ -214,10 +214,10 @@ TEST_CLASS (nicknamegenerator)
                            L"Failed to generate second nickname");
 
             Assert::AreNotEqual(random_word, random_word_2,
-                             L"Two random words are the same");
+                                L"Two random words are the same");
 
             Assert::AreNotEqual(nickname, nickname_2,
-                             L"Two random nicknames are the same");
+                                L"Two random nicknames are the same");
         }
         catch (std::exception& e)
         {
@@ -235,7 +235,7 @@ TEST_CLASS (nicknamegenerator)
         try
         {
             Assert::IsTrue(
-                std::filesystem::remove_all(_current_path / "resources") > 0,
+                std::filesystem::remove_all(_current_path / "resources/nickname") > 0,
                 L"Failed to remove resources");
             Assert::IsFalse(std::filesystem::exists(_current_path /
                                                     R"(resources/nickname)"),
