@@ -63,5 +63,13 @@ jobs:
       
     - name: Run VSTest
       working-directory: ${{env.GITHUB_WORKSPACE}}csgo-manager-core\x64\Release
-      run: vstest.console.exe /Platform:x64 .\csgo-core-unit-tests.dll
+      run: vstest.console.exe /Platform:x64 /Logger:trx .\csgo-core-unit-tests.dll
+      
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action/composite@v2
+      if: always()
+      with:
+        files: |
+          test-results/**/*.xml
+          ${{env.GITHUB_WORKSPACE}}csgo-manager-core\x64\Release\*.trx
 
