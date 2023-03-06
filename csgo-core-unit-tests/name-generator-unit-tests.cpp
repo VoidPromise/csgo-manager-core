@@ -70,7 +70,7 @@ TEST_CLASS (namegenerator)
                         L"Loading method returned success for invalid path");
     }
 
-    TEST_METHOD (RandomName)
+    TEST_METHOD (Name)
     {
         try
         {
