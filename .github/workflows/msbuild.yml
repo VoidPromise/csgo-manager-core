@@ -71,5 +71,5 @@ jobs:
       with:
         files: |
           test-results/**/*.xml
-          ${{env.GITHUB_WORKSPACE}}csgo-manager-core\x64\Release\*.trx
+          ${{env.GITHUB_WORKSPACE}}csgo-manager-core\x64\Release\TestResults\*.trx
 
