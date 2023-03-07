@@ -27,7 +27,13 @@ class csgocore
     [[nodiscard]] bool initialize() const noexcept;
 
     // Initialize all necessary resources.
-    [[nodiscard]] void new_game() noexcept;
+    void new_game() noexcept;
+
+    // Update game state by one step.
+    void next_step() noexcept;
+
+    // Update game state by necessary number of steps to reach next day.
+    void next_day() noexcept;
 
     // Load a saved state from filesystem,
     [[nodiscard]] bool load_state(

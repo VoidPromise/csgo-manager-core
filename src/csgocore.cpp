@@ -21,6 +21,14 @@ void csgocore::new_game() noexcept
     helper::generate_coaches();
 }
 
+void csgocore::next_step() noexcept
+{
+}
+
+void csgocore::next_day() noexcept
+{
+}
+
 bool csgocore::load_state(const std::filesystem::path& origin) const noexcept
 {
     return false;
