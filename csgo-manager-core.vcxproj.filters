@@ -94,6 +94,18 @@
     <ClInclude Include="src\utilities\wstringutils.hpp">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="src\utilities\countriesRolesSkills.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\role.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\countryGetRegion.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\region.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\helpers\generator.cpp">
@@ -101,6 +113,9 @@
     </ClCompile>
     <ClCompile Include="src\csgocore.cpp" />
     <ClCompile Include="src\utilities\wstringutils.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utilities\countryGetRegion.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
   </ItemGroup>

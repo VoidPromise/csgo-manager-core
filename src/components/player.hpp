@@ -2,8 +2,8 @@
 
 namespace vp::component
 {
-struct player
-{
+	struct player
+	{
 
-};
-} // namespace vp::component
+	};
+}
