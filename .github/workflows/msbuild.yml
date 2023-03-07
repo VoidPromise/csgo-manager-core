@@ -3,9 +3,15 @@ name: MSBuild
 on:
   push:
     branches: [ "main" ]
+    paths-ignore:
+      - '.github/**'
+      - 'README.md'
   pull_request:
     branches: [ "main" ]
-
+    paths-ignore:
+      - '.github/**'
+      - 'README.md'
+      
 env:
   # Path to the solution file relative to the root of the project.
   SOLUTION_FILE_PATH: .
