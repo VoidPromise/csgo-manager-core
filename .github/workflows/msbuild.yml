@@ -70,6 +70,7 @@ jobs:
       
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action/composite@v2
+      id: test-results
       if: always()
       with:
         files: |
