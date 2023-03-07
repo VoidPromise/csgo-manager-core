@@ -1,7 +1,6 @@
 # CSGO Manager Core
 [![MSBuild](https://github.com/VoidPromise/csgo-manager-core/actions/workflows/msbuild.yml/badge.svg)](https://github.com/VoidPromise/csgo-manager-core/actions/workflows/msbuild.yml)
 [![Tests](https://gist.githubusercontent.com/dasmig/0abf83c9dcaca28cf9755aa001cad063/raw/ca4b09ce15ffae0c1b22c131bbe42e9c24d9ca42/badge.svg)](https://github.com/VoidPromise/csgo-manager-core/actions/workflows/msbuild.yml)
-[![Lint Code Base](https://github.com/VoidPromise/csgo-manager-core/actions/workflows/super-linter.yml/badge.svg)](https://github.com/VoidPromise/csgo-manager-core/actions/workflows/super-linter.yml)
 
 [![Visual Studio](https://img.shields.io/badge/--6C33AF?logo=visual%20studio)](https://visualstudio.microsoft.com/)
 [![CPP](https://img.shields.io/badge/C++-20-blue.svg?style=flat&logo=c%2B%2B&logoColor=blue)](https://en.cppreference.com/w/cpp/20)
