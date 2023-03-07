@@ -3,9 +3,15 @@ name: MSBuild
 on:
   push:
     branches: [ "main" ]
+    paths-ignore:
+      - '.github/**'
+      - 'README.md'
   pull_request:
     branches: [ "main" ]
-
+    paths-ignore:
+      - '.github/**'
+      - 'README.md'
+      
 env:
   # Path to the solution file relative to the root of the project.
   SOLUTION_FILE_PATH: .
@@ -15,8 +21,11 @@ env:
   # https://docs.github.com/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
   BUILD_CONFIGURATION: Release
 
-permissions:
+permissions:  
   contents: read
+  issues: read
+  checks: write
+  pull-requests: write
 
 jobs:
   build:
@@ -56,6 +65,51 @@ jobs:
 
     - name: Build
       working-directory: ${{env.GITHUB_WORKSPACE}}csgo-manager-core
-      # Add additional options to the MSBuild command line here (like platform or verbosity level).
-      # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
+
+    - name: Setup VSTest Path
+      uses: darenm/Setup-VSTest@v1.2
+      
+    - name: Run VSTest
+      working-directory: ${{env.GITHUB_WORKSPACE}}csgo-manager-core\x64\Release
+      run: vstest.console.exe /Platform:x64 /Logger:trx .\csgo-core-unit-tests.dll
+      
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action/composite@v2
+      id: test-results
+      if: always()
+      with:
+        files: |
+          test-results/**/*.xml
+          ${{env.GITHUB_WORKSPACE}}csgo-manager-core\x64\Release\TestResults\*.trx
+          
+    - name: Set Badge Color
+      shell: bash
+      run: |
+        case ${{ fromJSON( steps.test-results.outputs.json ).conclusion }} in
+          success)
+            echo "BADGE_COLOR=31c653" >> $GITHUB_ENV
+            ;;
+          failure)
+            echo "BADGE_COLOR=800000" >> $GITHUB_ENV
+            ;;
+          neutral)
+            echo "BADGE_COLOR=696969" >> $GITHUB_ENV
+            ;;
+        esac
+
+    - name: Create Badge
+      uses: emibcn/badge-action@d6f51ff11b5c3382b3b88689ae2d6db22d9737d1
+      with:
+        label: Tests
+        status: '${{ fromJSON( steps.test-results.outputs.json ).formatted.stats.tests }} tests, ${{ fromJSON( steps.test-results.outputs.json ).formatted.stats.runs }} runs: ${{ fromJSON( steps.test-results.outputs.json ).conclusion }}'
+        color: ${{ env.BADGE_COLOR }}
+        path: badge.svg
+
+    - name: Upload Badge to Gist
+      uses: andymckay/append-gist-action@1fbfbbce708a39bd45846f0955ed5521f2099c6d
+      with:
+        token: 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
+        gistURL: https://gist.githubusercontent.com/dasmig/0abf83c9dcaca28cf9755aa001cad063
+        file: badge.svg
+
