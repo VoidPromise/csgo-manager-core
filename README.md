@@ -1,8 +1,7 @@
 # CSGO Manager Core
 [![MSBuild](https://github.com/VoidPromise/csgo-manager-core/actions/workflows/msbuild.yml/badge.svg)](https://github.com/VoidPromise/csgo-manager-core/actions/workflows/msbuild.yml)
 [![Tests](https://gist.githubusercontent.com/dasmig/0abf83c9dcaca28cf9755aa001cad063/raw/ca4b09ce15ffae0c1b22c131bbe42e9c24d9ca42/badge.svg)](https://github.com/VoidPromise/csgo-manager-core/actions/workflows/msbuild.yml)
-[![Docs](https://img.shields.io/badge/docs-read-success.svg?style=flat&logo=readthedocs)](https://github.com/VoidPromise/docs)![badge](https://user-images.githubusercontent.com/9683491/223307823-cb7f2397-eade-4933-9b71-d9a74b1fba7d.svg)
-
+[![Docs](https://img.shields.io/badge/docs-read-success.svg?style=flat&logo=readthedocs)](https://github.com/VoidPromise/docs)
 
 [![Visual Studio](https://img.shields.io/badge/--6C33AF?logo=visual%20studio)](https://visualstudio.microsoft.com/)
 [![CPP](https://img.shields.io/badge/C++-20-blue.svg?style=flat&logo=c%2B%2B)](https://en.cppreference.com/w/cpp/20)
@@ -23,7 +22,4 @@ Core engine of CSGO Manager. Handles game logic and provides APIs for UI layer.
 
 ### By
 
-
 [![VoidPromise](https://img.shields.io/badge/organization-Void%20Promise-black.svg?style=flat&logo=github&logoColor=black)](https://github.com/VoidPromise)
-
-https://github.com/orgs/VoidPromise/projects/1
