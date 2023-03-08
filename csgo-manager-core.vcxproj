@@ -23,6 +23,8 @@
     <ClInclude Include="src\components\attributes.hpp" />
     <ClInclude Include="src\components\community.hpp" />
     <ClInclude Include="src\components\country.hpp" />
+    <ClInclude Include="src\components\region.hpp" />
+    <ClInclude Include="src\components\role.hpp" />
     <ClInclude Include="src\components\metadata.hpp" />
     <ClInclude Include="src\components\playerdata.hpp" />
     <ClInclude Include="src\components\time_slot.hpp" />
@@ -47,11 +49,14 @@
     <ClInclude Include="src\components\trait.hpp" />
     <ClInclude Include="src\csgocore.hpp" />
     <ClInclude Include="src\helpers\generator.hpp" />
+    <ClInclude Include="src\utilities\countriesRolesSkills.hpp" />
+    <ClInclude Include="src\utilities\countryGetRegion.hpp" />
     <ClInclude Include="src\utilities\wstringutils.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\csgocore.cpp" />
     <ClCompile Include="src\helpers\generator.cpp" />
+    <ClCompile Include="src\utilities\countryGetRegion.cpp" />
     <ClCompile Include="src\utilities\wstringutils.cpp" />
   </ItemGroup>
   <ItemGroup>

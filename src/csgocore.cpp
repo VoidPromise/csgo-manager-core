@@ -18,9 +18,9 @@ namespace vp
     void csgocore::new_game() noexcept
     {
         helper::generate_metadata(_registry);
-        helper::generate_countries(_registry);
+        /*helper::generate_countries(_registry);
         helper::generate_tournament_organizers(_registry);
-        helper::generate_teams(_registry);
+        helper::generate_teams(_registry);*/
         helper::generate_players(_registry);
         helper::generate_coaches();
     }

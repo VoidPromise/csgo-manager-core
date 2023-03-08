@@ -51,7 +51,7 @@ namespace vp::helper
 
     void generate_metadata(entt::registry& registry)
     {
-        registry.ctx().emplace<component::metadata>(0);
+        registry.ctx().emplace<component::metadata>(std::uint64_t{0});
     }
 
 } // namespace vp::helper

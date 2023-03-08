@@ -4,8 +4,8 @@
 
 namespace vp::component
 {
-	struct country
+	struct region
 	{
-		utility::availableCountries _country;
+		utility::availableRegions _region;
 	};
 }
