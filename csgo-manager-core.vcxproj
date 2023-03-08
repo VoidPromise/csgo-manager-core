@@ -23,6 +23,8 @@
     <ClInclude Include="src\components\attributes.hpp" />
     <ClInclude Include="src\components\community.hpp" />
     <ClInclude Include="src\components\country.hpp" />
+    <ClInclude Include="src\components\metadata.hpp" />
+    <ClInclude Include="src\components\playerdata.hpp" />
     <ClInclude Include="src\components\time_slot.hpp" />
     <ClInclude Include="src\components\description.hpp" />
     <ClInclude Include="src\components\timestamp.hpp" />

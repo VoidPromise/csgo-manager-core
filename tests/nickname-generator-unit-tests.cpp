@@ -234,9 +234,9 @@ TEST_CLASS (nicknamegenerator)
 
         try
         {
-            Assert::IsTrue(
-                std::filesystem::remove_all(_current_path / "resources/nickname") > 0,
-                L"Failed to remove resources");
+            Assert::IsTrue(std::filesystem::remove_all(
+                               _current_path / "resources/nickname") > 0,
+                           L"Failed to remove resources");
             Assert::IsFalse(std::filesystem::exists(_current_path /
                                                     R"(resources/nickname)"),
                             L"Nickname folder still exists");

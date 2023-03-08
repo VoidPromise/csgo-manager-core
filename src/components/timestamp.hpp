@@ -2,9 +2,9 @@
 
 namespace vp::component
 {
-	struct timestamp
-	{
-		date::year_month_day _value;
-		std::uint8_t _hour;
-	};
-}
+    struct timestamp
+    {
+        date::year_month_day _value;
+        std::uint8_t _hour;
+    };
+} // namespace vp::component

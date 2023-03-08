@@ -32,9 +32,9 @@ TEST_CLASS (namegenerator)
                                L"Failed to create temp directory");
             }
 
-            std::filesystem::copy(
-                name_resource_dir, _current_path / R"(resources/name)",
-                std::filesystem::copy_options::recursive);
+            std::filesystem::copy(name_resource_dir,
+                                  _current_path / R"(resources/name)",
+                                  std::filesystem::copy_options::recursive);
 
             Assert::IsTrue(
                 std::filesystem::exists(
@@ -180,9 +180,9 @@ TEST_CLASS (namegenerator)
 
         try
         {
-            Assert::IsTrue(
-                std::filesystem::remove_all(_current_path / "resources/name") > 0,
-                L"Failed to remove resources");
+            Assert::IsTrue(std::filesystem::remove_all(_current_path /
+                                                       "resources/name") > 0,
+                           L"Failed to remove resources");
             Assert::IsFalse(
                 std::filesystem::exists(_current_path / R"(resources/name)"),
                 L"Name folder still exists");

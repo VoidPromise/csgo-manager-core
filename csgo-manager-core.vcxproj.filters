@@ -94,6 +94,12 @@
     <ClInclude Include="src\utilities\wstringutils.hpp">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="src\components\metadata.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\playerdata.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\helpers\generator.cpp">

@@ -6,57 +6,59 @@
 
 namespace vp
 {
-class csgocore
-{
-  public:
-    // Copy/move constructors can be deleted since they are not going to be
-    // used due to singleton pattern.
-    csgocore(const csgocore&) = delete;
-    csgocore(csgocore&&) = delete;
-    csgocore& operator=(const csgocore&) = delete;
-    csgocore& operator=(csgocore&&) = delete;
-
-    // Thread safe access to csgocore singleton.
-    static inline csgocore& instance() noexcept
+    class csgocore
     {
-        static csgocore instance{};
-        return instance;
-    }
+      public:
+        // Copy/move constructors can be deleted since they are not going to be
+        // used due to singleton pattern.
+        csgocore(const csgocore&) = delete;
+        csgocore(csgocore&&) = delete;
+        csgocore& operator=(const csgocore&) = delete;
+        csgocore& operator=(csgocore&&) = delete;
 
-    // Initialize all necessary resources.
-    [[nodiscard]] bool initialize() const noexcept;
+        // Thread safe access to csgocore singleton.
+        static inline csgocore& instance() noexcept
+        {
+            static csgocore instance{};
+            return instance;
+        }
 
-    // Initialize all necessary resources.
-    void new_game() noexcept;
+        // Initialize all necessary resources.
+        [[nodiscard]] bool initialize() const noexcept;
 
-    // Update game state by one step.
-    void next_step() noexcept;
+        // Initialize all necessary resources.
+        void new_game() noexcept;
 
-    // Update game state by necessary number of steps to reach next day.
-    void next_day() noexcept;
+        // Update game state by one step.
+        void next_step() noexcept;
 
-    // Load a saved state from filesystem,
-    [[nodiscard]] bool load_state(
-        const std::filesystem::path& origin) const noexcept;
+        // Update game state by necessary number of steps to reach next day.
+        void next_day() noexcept;
 
-    // Save iternal state of the engine.
-    [[nodiscard]] bool save_state(
-        const std::filesystem::path& destination) const noexcept;
+        // Load a saved state from filesystem,
+        [[nodiscard]] bool load_state(
+            const std::filesystem::path& origin) const noexcept;
 
-  private:
-    // Csgocore registry, holds all entities/components.
-    entt::registry _registry;
+        // Save iternal state of the engine.
+        [[nodiscard]] bool save_state(
+            const std::filesystem::path& destination) const noexcept;
 
-    // Initialize csgocore, no complicated processes.
-    csgocore() = default;
+      private:
+        // Csgocore registry, holds all entities/components.
+        entt::registry _registry;
 
-    // We don't manage any resource, all should gracefully deallocate by itself.
-    ~csgocore() = default;
+        // Initialize csgocore, no complicated processes.
+        csgocore() = default;
 
-    // Load all configuration files and set internal parameters.
-    bool load_configuration() const noexcept;
+        // We don't manage any resource, all should gracefully deallocate by
+        // itself.
+        ~csgocore() = default;
 
-    // Load all csgocore relevant resource files, such as images and strings.
-    bool load_resources() const noexcept;
-};
+        // Load all configuration files and set internal parameters.
+        bool load_configuration() const noexcept;
+
+        // Load all csgocore relevant resource files, such as images and
+        // strings.
+        bool load_resources() const noexcept;
+    };
 } // namespace vp
