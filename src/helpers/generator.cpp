@@ -1,21 +1,20 @@
 #include "generator.hpp"
+#include "age.hpp"
+#include "country.hpp"
+#include "countryChoiceFunctions.hpp"
+#include "countryGetCulture.hpp"
+#include "createRandomSkillLevelByTier.hpp"
 #include "metadata.hpp"
 #include "name.hpp"
 #include "namegen.hpp"
 #include "nickname.hpp"
 #include "nicknamegen.hpp"
 #include "player.hpp"
-
-#include "age.hpp"
-#include "country.hpp"
 #include "role.hpp"
 #include "skill.hpp"
 
+#include <chrono>
 #include <execution>
-
-#include "countryChoiceFunctions.hpp"
-#include "countryGetCulture.hpp"
-#include "createRandomSkillLevelByTier.hpp"
 
 namespace vp::helper
 {
@@ -183,9 +182,10 @@ namespace vp::helper
     void generate_metadata(entt::registry& registry)
     {
         registry.ctx().emplace<component::metadata>(
-            std::uint64_t{0},
+            std::array<std::uint8_t, 3>({0, 0, 0}),
             date::floor<date::days>(std::chrono::system_clock::now()),
-            date::floor<date::days>(std::chrono::system_clock::now()));
+            date::floor<date::days>(std::chrono::system_clock::now()),
+            std::uint64_t{0});
     }
 
 } // namespace vp::helper

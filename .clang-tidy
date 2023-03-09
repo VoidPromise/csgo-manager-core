@@ -1,5 +1,38 @@
 ---
-Checks: "clang-diagnostic-*,clang-analyzer-*,cppcoreguidelines-*,modernize-*,misc-*,readability-*,performance-*,hicpp-*,bugprone-*,concurrency-*,-modernize-use-trailing-return-type"
+Checks: "clang-diagnostic-*,clang-analyzer-*,cppcoreguidelines-*,modernize-*,misc-*,readability-*,performance-*,hicpp-*,bugprone-*,concurrency-*,-modernize-use-trailing-return-type,-clang-diagnostic-pragma-once-outside-header"
 WarningsAsErrors: true
 HeaderFilterRegex: ""
 AnalyzeTemporaryDtors: false
+CheckOptions:
+  - key:	readability-identifier-naming.ClassCase
+    value: lower_case
+  - key:	readability-identifier-naming.StructCase
+    value: lower_case
+  - key:	readability-identifier-naming.MemberCase
+    value: lower_case
+  - key:	readability-identifier-naming.VariableCase
+    value: lower_case
+  - key:	readability-identifier-naming.EnumCase
+    value: lower_case
+  - key:	readability-identifier-naming.EnumConstantCase
+    value: lower_case
+  - key:	readability-identifier-naming.FunctionCase
+    value: lower_case
+  - key:	readability-identifier-naming.NamespaceCase
+    value: lower_case
+  - key:	readability-identifier-naming.ParameterCase
+    value: lower_case
+  - key:	readability-identifier-naming.TypeAliasCase
+    value: lower_case
+  - key:	readability-identifier-naming.TypedefCase
+    value: lower_case
+  - key:	readability-identifier-naming.GlobalConstantCase
+    value: UPPER_CASE
+  - key:	readability-identifier-naming.MemberPrefix
+    value: _
+  - key:	readability-identifier-naming.ConstexprVariablePrefix
+    value: c
+  - key:	readability-identifier-naming.ConstantPrefix
+    value: c
+  - key:	readability-identifier-naming.StaticVariablePrefix
+    value: s

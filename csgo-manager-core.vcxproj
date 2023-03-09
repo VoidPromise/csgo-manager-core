@@ -23,6 +23,7 @@
     <ClInclude Include="src\components\attributes.hpp" />
     <ClInclude Include="src\components\community.hpp" />
     <ClInclude Include="src\components\country.hpp" />
+    <ClInclude Include="src\components\gamedate.hpp" />
     <ClInclude Include="src\components\region.hpp" />
     <ClInclude Include="src\components\role.hpp" />
     <ClInclude Include="src\components\metadata.hpp" />
@@ -135,12 +136,14 @@
     <EnableClangTidyCodeAnalysis>true</EnableClangTidyCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <AllProjectIncludesArePublic>true</AllProjectIncludesArePublic>
+    <EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <EnableClangTidyCodeAnalysis>true</EnableClangTidyCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <AllProjectIncludesArePublic>true</AllProjectIncludesArePublic>
+    <EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
