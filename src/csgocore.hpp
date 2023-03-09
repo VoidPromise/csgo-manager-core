@@ -3,6 +3,7 @@
 #include <filesystem>
 
 #include "pch.h"
+#include <userdata.hpp>
 
 namespace vp
 {
@@ -25,6 +26,9 @@ namespace vp
 
         // Initialize all necessary resources.
         [[nodiscard]] bool initialize() const noexcept;
+
+        // Save user data to registry.
+        void set_user_data(const component::userdata& data) noexcept;
 
         // Initialize all necessary resources.
         void new_game() noexcept;

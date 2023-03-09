@@ -3,7 +3,6 @@
 
 namespace vp::helper
 {
-
     void generate_coaches();
 
     void generate_metadata(entt::registry& registry);

@@ -109,7 +109,7 @@
     <ClInclude Include="src\components\metadata.hpp">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\playerdata.hpp">
+    <ClInclude Include="src\components\userdata.hpp">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="src\utilities\rolesEnum.hpp">

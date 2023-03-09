@@ -26,7 +26,7 @@
     <ClInclude Include="src\components\region.hpp" />
     <ClInclude Include="src\components\role.hpp" />
     <ClInclude Include="src\components\metadata.hpp" />
-    <ClInclude Include="src\components\playerdata.hpp" />
+    <ClInclude Include="src\components\userdata.hpp" />
     <ClInclude Include="src\components\time_slot.hpp" />
     <ClInclude Include="src\components\description.hpp" />
     <ClInclude Include="src\components\timestamp.hpp" />

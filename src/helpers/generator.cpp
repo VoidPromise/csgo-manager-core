@@ -182,7 +182,10 @@ namespace vp::helper
 
     void generate_metadata(entt::registry& registry)
     {
-                registry.ctx().emplace<component::metadata>(std::uint64_t{0});
+        registry.ctx().emplace<component::metadata>(
+            std::uint64_t{0},
+            date::floor<date::days>(std::chrono::system_clock::now()),
+            date::floor<date::days>(std::chrono::system_clock::now()));
     }
 
 } // namespace vp::helper
