@@ -5,24 +5,24 @@
 
 namespace vp::component
 {
-	struct skill
-	{
-		std::uint8_t _skillLevel;
-		std::vector<int> _generalAttributes; //the index define which skill
-		std::vector<int> _gunsProficiency;
-		std::vector<int> _utilityProficiency;
-		std::vector<int> _roleKnowledge;
-		std::vector<int> _mapKnowledge;
-		std::vector<int> _ancientPositions;
-		std::vector<int> _anubisPositions;
-		std::vector<int> _cachePositions;
-		std::vector<int> _cobblestonePositions;
-		std::vector<int> _dust2Positions;
-		std::vector<int> _infernoPositions;
-		std::vector<int> _miragePositions;
-		std::vector<int> _nukePositions;
-		std::vector<int> _overpassPositions;
-		std::vector<int> _trainPositions;
-		std::vector<int> _vertigoPositions;
-	};
-}
+    struct skill
+    {
+        std::uint8_t _skillLevel;
+        std::vector<std::uint8_t> _generalAttributes; // the index define which skill
+        std::vector<std::uint8_t> _gunsProficiency;
+        std::vector<std::uint8_t> _utilityProficiency;
+        std::vector<std::uint8_t> _roleKnowledge;
+        std::vector<std::uint8_t> _mapKnowledge;
+        std::vector<std::uint8_t> _ancientPositions;
+        std::vector<std::uint8_t> _anubisPositions;
+        std::vector<std::uint8_t> _cachePositions;
+        std::vector<std::uint8_t> _cobblestonePositions;
+        std::vector<std::uint8_t> _dust2Positions;
+        std::vector<std::uint8_t> _infernoPositions;
+        std::vector<std::uint8_t> _miragePositions;
+        std::vector<std::uint8_t> _nukePositions;
+        std::vector<std::uint8_t> _overpassPositions;
+        std::vector<std::uint8_t> _trainPositions;
+        std::vector<std::uint8_t> _vertigoPositions;
+    };
+} // namespace vp::component

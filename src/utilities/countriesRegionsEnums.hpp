@@ -1,0 +1,106 @@
+#pragma once
+
+#include <map>
+
+namespace vp::utility
+{
+    enum class availableCountries
+    {
+        // players' countries in hltv top 30 world ranking
+        International,
+        Argentina,
+        Australia,
+        Brazil,
+        China,
+        Czech_Republic,
+        Denmark,
+        Finland,
+        France,
+        Germany,
+        Mongolia,
+        Poland,
+        Portugal,
+        Russia,
+        Sweden,
+        Turkey,
+        Ukraine,
+        United_Kingdom,
+        United_States,
+        Belgium,
+        Bosnia,
+        Bulgaria,
+        Canada,
+        Chile,
+        Estonia,
+        Hungary,
+        Israel,
+        Kazakhstan,
+        Kosovo,
+        Latvia,
+        Mexico,
+        Montenegro,
+        Netherlands,
+        New_Zealand,
+        Norway,
+        Romania,
+        Serbia,
+        Slovakia,
+        South_Africa,
+        Spain,
+        Switzerland,
+        Uruguay
+    };
+
+    enum class availableRegions
+    {
+        Western_Europe,
+        Eastern_Europe,
+        CIS,
+        Americas,
+        Asia,
+        Oceania
+    };
+
+    static const inline std::map<availableCountries, double>
+        playersCountryDistribution{{availableCountries::Argentina, 0.0322},
+                                   {availableCountries::Australia, 0.0456},
+                                   {availableCountries::Brazil, 0.0972},
+                                   {availableCountries::China, 0.0231},
+                                   {availableCountries::Czech_Republic, 0.0186},
+                                   {availableCountries::Denmark, 0.0722},
+                                   {availableCountries::Finland, 0.0309},
+                                   {availableCountries::France, 0.0258},
+                                   {availableCountries::Germany, 0.0267},
+                                   {availableCountries::Mongolia, 0.0263},
+                                   {availableCountries::Poland, 0.0644},
+                                   {availableCountries::Portugal, 0.0276},
+                                   {availableCountries::Russia, 0.0733},
+                                   {availableCountries::Sweden, 0.0423},
+                                   {availableCountries::Turkey, 0.0204},
+                                   {availableCountries::Ukraine, 0.0332},
+                                   {availableCountries::United_Kingdom, 0.0267},
+                                   {availableCountries::United_States, 0.0782},
+                                   {availableCountries::Belgium, 0.0093},
+                                   {availableCountries::Bosnia, 0.0093},
+                                   {availableCountries::Bulgaria, 0.0111},
+                                   {availableCountries::Canada, 0.0166},
+                                   {availableCountries::Chile, 0.0093},
+                                   {availableCountries::Estonia, 0.0093},
+                                   {availableCountries::Hungary, 0.0093},
+                                   {availableCountries::Israel, 0.0093},
+                                   {availableCountries::Kazakhstan, 0.0137},
+                                   {availableCountries::Kosovo, 0.0101},
+                                   {availableCountries::Latvia, 0.0093},
+                                   {availableCountries::Mexico, 0.0093},
+                                   {availableCountries::Montenegro, 0.0093},
+                                   {availableCountries::Netherlands, 0.0093},
+                                   {availableCountries::New_Zealand, 0.0147},
+                                   {availableCountries::Norway, 0.0093},
+                                   {availableCountries::Romania, 0.0111},
+                                   {availableCountries::Serbia, 0.0101},
+                                   {availableCountries::Slovakia, 0.0111},
+                                   {availableCountries::South_Africa, 0.0128},
+                                   {availableCountries::Spain, 0.0137},
+                                   {availableCountries::Switzerland, 0.0093},
+                                   {availableCountries::Uruguay, 0.0093}};
+} // namespace vp::utility

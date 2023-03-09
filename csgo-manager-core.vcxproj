@@ -49,14 +49,22 @@
     <ClInclude Include="src\components\trait.hpp" />
     <ClInclude Include="src\csgocore.hpp" />
     <ClInclude Include="src\helpers\generator.hpp" />
-    <ClInclude Include="src\utilities\countriesRolesSkills.hpp" />
+    <ClInclude Include="src\utilities\countriesRegionsEnums.hpp" />
+    <ClInclude Include="src\utilities\countryChoiceFunctions.hpp" />
+    <ClInclude Include="src\utilities\countryGetCulture.hpp" />
     <ClInclude Include="src\utilities\countryGetRegion.hpp" />
+    <ClInclude Include="src\utilities\createRandomSkillLevelByTier.hpp" />
+    <ClInclude Include="src\utilities\rolesEnum.hpp" />
     <ClInclude Include="src\utilities\wstringutils.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\csgocore.cpp" />
     <ClCompile Include="src\helpers\generator.cpp" />
+    <ClCompile Include="src\utilities\countryChoiceFunctions.cpp" />
+    <ClCompile Include="src\utilities\countryGetCulture.cpp" />
     <ClCompile Include="src\utilities\countryGetRegion.cpp" />
+    <ClCompile Include="src\utilities\createRandomSkillLevelByTiercpp.cpp" />
+    <ClCompile Include="src\utilities\skillsEnum.hpp" />
     <ClCompile Include="src\utilities\wstringutils.cpp" />
   </ItemGroup>
   <ItemGroup>

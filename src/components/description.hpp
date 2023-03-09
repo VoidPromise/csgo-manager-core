@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 namespace vp::component
 {
     struct description

@@ -94,7 +94,7 @@
     <ClInclude Include="src\utilities\wstringutils.hpp">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="src\utilities\countriesRolesSkills.hpp">
+    <ClInclude Include="src\utilities\countriesRegionsEnums.hpp">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="src\components\role.hpp">
@@ -112,6 +112,18 @@
     <ClInclude Include="src\components\playerdata.hpp">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="src\utilities\rolesEnum.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\countryChoiceFunctions.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\createRandomSkillLevelByTier.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\countryGetCulture.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\helpers\generator.cpp">
@@ -122,6 +134,18 @@
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="src\utilities\countryGetRegion.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utilities\skillsEnum.hpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utilities\countryChoiceFunctions.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utilities\createRandomSkillLevelByTiercpp.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utilities\countryGetCulture.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
   </ItemGroup>

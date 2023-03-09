@@ -1,6 +1,6 @@
 #pragma once
 
-#include "countriesRolesSkills.hpp"
+#include "rolesEnum.hpp"
 
 namespace vp::component
 {
@@ -8,7 +8,7 @@ namespace vp::component
 	{
 		utility::rolesCT _primaryRoleCT;
 		utility::rolesCT _secondaryRoleCT;
-		utility::rolesCT _primaryRoleTR;
-		utility::rolesCT _secondaryRoleTR;
+		utility::rolesTR _primaryRoleTR;
+		utility::rolesTR _secondaryRoleTR;
 	};
 }
