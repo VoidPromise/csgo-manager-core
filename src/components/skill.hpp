@@ -8,7 +8,8 @@ namespace vp::component
     struct skill
     {
         std::uint8_t _skillLevel;
-        std::vector<std::uint8_t> _generalAttributes; // the index define which skill
+        std::vector<std::uint8_t>
+            _generalAttributes; // the index define which skill
         std::vector<std::uint8_t> _gunsProficiency;
         std::vector<std::uint8_t> _utilityProficiency;
         std::vector<std::uint8_t> _roleKnowledge;

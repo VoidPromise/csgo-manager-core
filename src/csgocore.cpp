@@ -15,9 +15,9 @@ namespace vp
         return load_configuration() && load_resources();
     }
 
-    void csgocore::set_user_data(const component::userdata& data) noexcept
+    void csgocore::set_user_data(const component::user_data& data) noexcept
     {
-        _registry.ctx().emplace<component::userdata>(data);
+        _registry.ctx().emplace<component::user_data>(data);
     }
 
     void csgocore::new_game() noexcept

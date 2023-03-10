@@ -3,277 +3,234 @@
 
 namespace vp::utility
 {
-    std::vector<int> playersGetCountriesByRankingRange(
-        std::vector<int> sortedPlayerCountriesVector, int beginIndex,
-        int endIndex, std::vector<availableCountries> countriesToDraw,
-        int tierPlayer)
+    std::vector<country_code> players_get_countries_by_ranking_range(
+        std::vector<country_code> sorted_player_countries_vector,
+        int begin_index, int end_index,
+        std::vector<country_code> countries_to_draw, int tier_player)
     {
-        int countriesLimitVector = 0;
-        int numberCountriesVector = 0;
-        availableCountries randomCountry;
+        int countries_limit_vector{0};
+        int number_countries_vector{0};
+        country_code random_country{};
 
-        for (beginIndex; beginIndex < endIndex; beginIndex++)
+        for (begin_index; begin_index < end_index; begin_index++)
         {
             do
             {
-                randomCountry = countriesToDraw.at(
+                random_country = countries_to_draw.at(
                     effolkronium::random_thread_local::get<std::size_t>(
-                        0, countriesToDraw.size() - 1));
-                countriesLimitVector = (int)std::round(
-                    sortedPlayerCountriesVector.size() *
-                    playersCountryDistribution.at(randomCountry));
-                numberCountriesVector =
-                    (int)std::count(sortedPlayerCountriesVector.begin(),
-                                    sortedPlayerCountriesVector.end(),
-                                    magic_enum::enum_integer(randomCountry));
+                        0, countries_to_draw.size() - 1));
+                countries_limit_vector =
+                    (int)std::round(sorted_player_countries_vector.size() *
+                                    players_distribution.at(random_country));
+                number_countries_vector = (int)std::count(
+                    sorted_player_countries_vector.begin(),
+                    sorted_player_countries_vector.end(), random_country);
 
-            } while (countriesLimitVector <= numberCountriesVector);
+            } while (countries_limit_vector <= number_countries_vector);
 
-            sortedPlayerCountriesVector.at(beginIndex) =
-                magic_enum::enum_integer(randomCountry);
-            sortedPlayerCountriesVector.at(
-                beginIndex + (sortedPlayerCountriesVector.size() / 2)) =
-                tierPlayer;
+            sorted_player_countries_vector.at(begin_index) = random_country;
+            sorted_player_countries_vector.at(
+                begin_index + (sorted_player_countries_vector.size() / 2)) =
+                (country_code)tier_player; // FIX!
         }
 
-        return sortedPlayerCountriesVector;
+        return sorted_player_countries_vector;
     }
 
-    std::vector<int> playersCountriesSortBySkillLevel(const int numPlayers)
+    std::vector<country_code> players_countries_sort_by_skill_level(
+        const std::size_t c_players_count)
     {
-        std::vector<int> sortedPlayerCountriesVector(numPlayers * 2);
+        std::vector<country_code> sorted_player_countries_vector(c_players_count *
+                                                                 2);
 
-        int beginIndex = 0;
-        int endIndex = (int)std::round(
-            numPlayers * 0.00184); // tier 1 = define 2 highest overall for 1080
-                                   // players or 180 teams
-        std::vector<availableCountries> availableCountriesForTier = {
-            availableCountries::Sweden,  availableCountries::Sweden,
-            availableCountries::France,  availableCountries::France,
-            availableCountries::Ukraine, availableCountries::Ukraine,
-            availableCountries::Brazil,  availableCountries::Brazil,
-            availableCountries::Denmark, availableCountries::Bosnia,
-            availableCountries::Slovakia};
-        sortedPlayerCountriesVector = playersGetCountriesByRankingRange(
-            sortedPlayerCountriesVector, beginIndex, endIndex,
-            availableCountriesForTier, 100);
+        int begin_index = 0;
+        int end_index = (int)std::round(
+            c_players_count * 0.00184); // tier 1 = define 2 highest overall for
+                                      // 1080 players or 180 teams
+        std::vector<country_code> available_countries_for_tier = {
+            country_code::Sweden, country_code::Sweden,  country_code::France,
+            country_code::France, country_code::Ukraine, country_code::Ukraine,
+            country_code::Brazil, country_code::Brazil,  country_code::Denmark,
+            country_code::Bosnia, country_code::Slovakia};
 
-        beginIndex = endIndex;
-        endIndex += (int)std::round(
-            numPlayers *
+        sorted_player_countries_vector = players_get_countries_by_ranking_range(
+            sorted_player_countries_vector, begin_index, end_index,
+            available_countries_for_tier, 100);
+
+        begin_index = end_index;
+        end_index += (int)std::round(
+            c_players_count *
             0.00278); // tier 1 = define 3-5 for 1080 players or 180 teams
-        availableCountriesForTier = {
-            availableCountries::Russia,  availableCountries::Russia,
-            availableCountries::Russia,  availableCountries::Denmark,
-            availableCountries::Denmark, availableCountries::Denmark,
-            availableCountries::Bosnia,  availableCountries::Bosnia,
-            availableCountries::Poland,  availableCountries::Poland,
-            availableCountries::Sweden,  availableCountries::France,
-            availableCountries::Ukraine, availableCountries::Brazil,
-            availableCountries::Norway,  availableCountries::United_States};
-        sortedPlayerCountriesVector = playersGetCountriesByRankingRange(
-            sortedPlayerCountriesVector, beginIndex, endIndex,
-            availableCountriesForTier, 200);
+        available_countries_for_tier = {
+            country_code::Russia,  country_code::Russia,
+            country_code::Russia,  country_code::Denmark,
+            country_code::Denmark, country_code::Denmark,
+            country_code::Bosnia,  country_code::Bosnia,
+            country_code::Poland,  country_code::Poland,
+            country_code::Sweden,  country_code::France,
+            country_code::Ukraine, country_code::Brazil,
+            country_code::Norway,  country_code::United_States};
+        sorted_player_countries_vector = players_get_countries_by_ranking_range(
+            sorted_player_countries_vector, begin_index, end_index,
+            available_countries_for_tier, 200);
 
-        beginIndex = endIndex;
-        endIndex += (int)std::round(
-            numPlayers *
+        begin_index = end_index;
+        end_index += (int)std::round(
+            c_players_count *
             0.00463); // tier 1 = define 6-10 for 1080 players or 180 teams
-        availableCountriesForTier = {
-            availableCountries::Sweden,        availableCountries::Sweden,
-            availableCountries::Sweden,        availableCountries::France,
-            availableCountries::France,        availableCountries::France,
-            availableCountries::Denmark,       availableCountries::Denmark,
-            availableCountries::Russia,        availableCountries::Russia,
-            availableCountries::Ukraine,       availableCountries::Brazil,
-            availableCountries::United_States, availableCountries::Slovakia,
-            availableCountries::Canada,        availableCountries::Latvia,
-            availableCountries::Estonia,       availableCountries::Kazakhstan,
-            availableCountries::Belgium,       availableCountries::Germany};
-        sortedPlayerCountriesVector = playersGetCountriesByRankingRange(
-            sortedPlayerCountriesVector, beginIndex, endIndex,
-            availableCountriesForTier, 300);
+        available_countries_for_tier = {
+            country_code::Sweden,        country_code::Sweden,
+            country_code::Sweden,        country_code::France,
+            country_code::France,        country_code::France,
+            country_code::Denmark,       country_code::Denmark,
+            country_code::Russia,        country_code::Russia,
+            country_code::Ukraine,       country_code::Brazil,
+            country_code::United_States, country_code::Slovakia,
+            country_code::Canada,        country_code::Latvia,
+            country_code::Estonia,       country_code::Kazakhstan,
+            country_code::Belgium,       country_code::Germany};
+        sorted_player_countries_vector = players_get_countries_by_ranking_range(
+            sorted_player_countries_vector, begin_index, end_index,
+            available_countries_for_tier, 300);
 
-        beginIndex = endIndex;
-        endIndex += (int)std::round(
-            numPlayers *
+        begin_index = end_index;
+        end_index += (int)std::round(
+            c_players_count *
             0.00927); // tier 1 = define 11 - 20 for 1080 players or 180 teams
-        availableCountriesForTier = {availableCountries::Denmark,
-                                     availableCountries::Denmark,
-                                     availableCountries::Denmark,
-                                     availableCountries::Sweden,
-                                     availableCountries::Sweden,
-                                     availableCountries::Sweden,
-                                     availableCountries::France,
-                                     availableCountries::France,
-                                     availableCountries::Brazil,
-                                     availableCountries::Brazil,
-                                     availableCountries::Bosnia,
-                                     availableCountries::Bosnia,
-                                     availableCountries::United_States,
-                                     availableCountries::United_States,
-                                     availableCountries::Russia,
-                                     availableCountries::Ukraine,
-                                     availableCountries::Poland,
-                                     availableCountries::Slovakia,
-                                     availableCountries::Canada,
-                                     availableCountries::Latvia,
-                                     availableCountries::Estonia,
-                                     availableCountries::Norway,
-                                     availableCountries::Kazakhstan,
-                                     availableCountries::Finland,
-                                     availableCountries::Israel,
-                                     availableCountries::Australia,
-                                     availableCountries::Czech_Republic,
-                                     availableCountries::Turkey,
-                                     availableCountries::Bulgaria};
-        sortedPlayerCountriesVector = playersGetCountriesByRankingRange(
-            sortedPlayerCountriesVector, beginIndex, endIndex,
-            availableCountriesForTier, 400);
+        available_countries_for_tier = {
+            country_code::Denmark,        country_code::Denmark,
+            country_code::Denmark,        country_code::Sweden,
+            country_code::Sweden,         country_code::Sweden,
+            country_code::France,         country_code::France,
+            country_code::Brazil,         country_code::Brazil,
+            country_code::Bosnia,         country_code::Bosnia,
+            country_code::United_States,  country_code::United_States,
+            country_code::Russia,         country_code::Ukraine,
+            country_code::Poland,         country_code::Slovakia,
+            country_code::Canada,         country_code::Latvia,
+            country_code::Estonia,        country_code::Norway,
+            country_code::Kazakhstan,     country_code::Finland,
+            country_code::Israel,         country_code::Australia,
+            country_code::Czech_Republic, country_code::Turkey,
+            country_code::Bulgaria};
+        sorted_player_countries_vector = players_get_countries_by_ranking_range(
+            sorted_player_countries_vector, begin_index, end_index,
+            available_countries_for_tier, 400);
 
-        beginIndex = endIndex;
-        endIndex += (int)std::round(
-            numPlayers *
+        begin_index = end_index;
+        end_index += (int)std::round(
+            c_players_count *
             0.02778); // tier 1 = define 21 - 50 for 1080 players or 180 teams
-        availableCountriesForTier = {availableCountries::Denmark,
-                                     availableCountries::Sweden,
-                                     availableCountries::France,
-                                     availableCountries::Russia,
-                                     availableCountries::Ukraine,
-                                     availableCountries::Brazil,
-                                     availableCountries::Bosnia,
-                                     availableCountries::Poland,
-                                     availableCountries::United_States,
-                                     availableCountries::Slovakia,
-                                     availableCountries::Canada,
-                                     availableCountries::Latvia,
-                                     availableCountries::Estonia,
-                                     availableCountries::Norway,
-                                     availableCountries::Kazakhstan,
-                                     availableCountries::Israel,
-                                     availableCountries::Australia,
-                                     availableCountries::Czech_Republic,
-                                     availableCountries::Germany,
-                                     availableCountries::United_Kingdom,
-                                     availableCountries::Hungary,
-                                     availableCountries::Netherlands,
-                                     availableCountries::Serbia};
-        sortedPlayerCountriesVector = playersGetCountriesByRankingRange(
-            sortedPlayerCountriesVector, beginIndex, endIndex,
-            availableCountriesForTier, 500);
+        available_countries_for_tier = {
+            country_code::Denmark,       country_code::Sweden,
+            country_code::France,        country_code::Russia,
+            country_code::Ukraine,       country_code::Brazil,
+            country_code::Bosnia,        country_code::Poland,
+            country_code::United_States, country_code::Slovakia,
+            country_code::Canada,        country_code::Latvia,
+            country_code::Estonia,       country_code::Norway,
+            country_code::Kazakhstan,    country_code::Israel,
+            country_code::Australia,     country_code::Czech_Republic,
+            country_code::Germany,       country_code::United_Kingdom,
+            country_code::Hungary,       country_code::Netherlands,
+            country_code::Serbia};
+        sorted_player_countries_vector = players_get_countries_by_ranking_range(
+            sorted_player_countries_vector, begin_index, end_index,
+            available_countries_for_tier, 500);
 
-        beginIndex = endIndex;
-        endIndex += (int)std::round(
-            numPlayers *
+        begin_index = end_index;
+        end_index += (int)std::round(
+            c_players_count *
             0.09261); // tier 2 = define 51 - 150 for 1080 players or 180 teams
-        availableCountriesForTier = {
-            availableCountries::Argentina,
-            availableCountries::Australia,
-            availableCountries::Brazil,
-            availableCountries::Czech_Republic,
-            availableCountries::Denmark,
-            availableCountries::Finland,
-            availableCountries::France,
-            availableCountries::Germany,
-            availableCountries::Mongolia,
-            availableCountries::Poland,
-            availableCountries::Portugal,
-            availableCountries::Russia,
-            availableCountries::Sweden,
-            availableCountries::Turkey,
-            availableCountries::Ukraine,
-            availableCountries::United_Kingdom,
-            availableCountries::United_States,
-            availableCountries::Belgium,
-            availableCountries::Bosnia,
-            availableCountries::Bulgaria,
-            availableCountries::Canada,
-            availableCountries::Chile,
-            availableCountries::Estonia,
-            availableCountries::Hungary,
-            availableCountries::Israel,
-            availableCountries::Kazakhstan,
-            availableCountries::Kosovo,
-            availableCountries::Latvia,
-            availableCountries::Montenegro,
-            availableCountries::Netherlands,
-            availableCountries::Norway,
-            availableCountries::Romania,
-            availableCountries::Serbia,
-            availableCountries::Slovakia,
-            availableCountries::South_Africa,
-            availableCountries::Spain,
-            availableCountries::Switzerland,
-            availableCountries::Uruguay}; // whitout China, Mexico and
-                                          // New Zealand
-        sortedPlayerCountriesVector = playersGetCountriesByRankingRange(
-            sortedPlayerCountriesVector, beginIndex, endIndex,
-            availableCountriesForTier, 600);
+        available_countries_for_tier = {
+            country_code::Argentina,
+            country_code::Australia,
+            country_code::Brazil,
+            country_code::Czech_Republic,
+            country_code::Denmark,
+            country_code::Finland,
+            country_code::France,
+            country_code::Germany,
+            country_code::Mongolia,
+            country_code::Poland,
+            country_code::Portugal,
+            country_code::Russia,
+            country_code::Sweden,
+            country_code::Turkey,
+            country_code::Ukraine,
+            country_code::United_Kingdom,
+            country_code::United_States,
+            country_code::Belgium,
+            country_code::Bosnia,
+            country_code::Bulgaria,
+            country_code::Canada,
+            country_code::Chile,
+            country_code::Estonia,
+            country_code::Hungary,
+            country_code::Israel,
+            country_code::Kazakhstan,
+            country_code::Kosovo,
+            country_code::Latvia,
+            country_code::Montenegro,
+            country_code::Netherlands,
+            country_code::Norway,
+            country_code::Romania,
+            country_code::Serbia,
+            country_code::Slovakia,
+            country_code::South_Africa,
+            country_code::Spain,
+            country_code::Switzerland,
+            country_code::Uruguay}; // whitout China, Mexico and
+                                    // New Zealand
+        sorted_player_countries_vector = players_get_countries_by_ranking_range(
+            sorted_player_countries_vector, begin_index, end_index,
+            available_countries_for_tier, 600);
 
-        beginIndex = endIndex;
-        endIndex += (int)std::round(
-            numPlayers *
+        begin_index = end_index;
+        end_index += (int)std::round(
+            c_players_count *
             0.46295); // tier 3 = define 151 - 650 for 1080 players or 180 teams
-        availableCountriesForTier = {availableCountries::Argentina,
-                                     availableCountries::Australia,
-                                     availableCountries::Brazil,
-                                     availableCountries::China,
-                                     availableCountries::Czech_Republic,
-                                     availableCountries::Denmark,
-                                     availableCountries::Finland,
-                                     availableCountries::France,
-                                     availableCountries::Germany,
-                                     availableCountries::Mongolia,
-                                     availableCountries::Poland,
-                                     availableCountries::Portugal,
-                                     availableCountries::Russia,
-                                     availableCountries::Sweden,
-                                     availableCountries::Turkey,
-                                     availableCountries::Ukraine,
-                                     availableCountries::United_Kingdom,
-                                     availableCountries::United_States,
-                                     availableCountries::Belgium,
-                                     availableCountries::Bosnia,
-                                     availableCountries::Bulgaria,
-                                     availableCountries::Canada,
-                                     availableCountries::Chile,
-                                     availableCountries::Estonia,
-                                     availableCountries::Hungary,
-                                     availableCountries::Israel,
-                                     availableCountries::Kazakhstan,
-                                     availableCountries::Kosovo,
-                                     availableCountries::Latvia,
-                                     availableCountries::Mexico,
-                                     availableCountries::Montenegro,
-                                     availableCountries::Netherlands,
-                                     availableCountries::New_Zealand,
-                                     availableCountries::Norway,
-                                     availableCountries::Romania,
-                                     availableCountries::Serbia,
-                                     availableCountries::Slovakia,
-                                     availableCountries::South_Africa,
-                                     availableCountries::Spain,
-                                     availableCountries::Switzerland,
-                                     availableCountries::Uruguay};
-        sortedPlayerCountriesVector = playersGetCountriesByRankingRange(
-            sortedPlayerCountriesVector, beginIndex, endIndex,
-            availableCountriesForTier, 700);
+        available_countries_for_tier = {
+            country_code::Argentina,      country_code::Australia,
+            country_code::Brazil,         country_code::China,
+            country_code::Czech_Republic, country_code::Denmark,
+            country_code::Finland,        country_code::France,
+            country_code::Germany,        country_code::Mongolia,
+            country_code::Poland,         country_code::Portugal,
+            country_code::Russia,         country_code::Sweden,
+            country_code::Turkey,         country_code::Ukraine,
+            country_code::United_Kingdom, country_code::United_States,
+            country_code::Belgium,        country_code::Bosnia,
+            country_code::Bulgaria,       country_code::Canada,
+            country_code::Chile,          country_code::Estonia,
+            country_code::Hungary,        country_code::Israel,
+            country_code::Kazakhstan,     country_code::Kosovo,
+            country_code::Latvia,         country_code::Mexico,
+            country_code::Montenegro,     country_code::Netherlands,
+            country_code::New_Zealand,    country_code::Norway,
+            country_code::Romania,        country_code::Serbia,
+            country_code::Slovakia,       country_code::South_Africa,
+            country_code::Spain,          country_code::Switzerland,
+            country_code::Uruguay};
+        sorted_player_countries_vector = players_get_countries_by_ranking_range(
+            sorted_player_countries_vector, begin_index, end_index,
+            available_countries_for_tier, 700);
 
-        beginIndex = endIndex;
-        endIndex += (int)std::round(
-            numPlayers *
+        begin_index = end_index;
+        end_index += (int)std::round(
+            c_players_count *
             0.23148); // tier 4 = define 651 - 900 for 1080 players or 180 teams
-        sortedPlayerCountriesVector = playersGetCountriesByRankingRange(
-            sortedPlayerCountriesVector, beginIndex, endIndex,
-            availableCountriesForTier, 800);
+        sorted_player_countries_vector = players_get_countries_by_ranking_range(
+            sorted_player_countries_vector, begin_index, end_index,
+            available_countries_for_tier, 800);
 
-        beginIndex = endIndex;
-        endIndex = numPlayers; // tier 5 = define 901 - 1080 for 1080 players or
-                               // 180 teams
-        sortedPlayerCountriesVector = playersGetCountriesByRankingRange(
-            sortedPlayerCountriesVector, beginIndex, endIndex,
-            availableCountriesForTier, 900);
+        begin_index = end_index;
+        end_index = c_players_count; // tier 5 = define 901 - 1080 for 1080
+                                   // players or 180 teams
+        sorted_player_countries_vector = players_get_countries_by_ranking_range(
+            sorted_player_countries_vector, begin_index, end_index,
+            available_countries_for_tier, 900);
 
-        return sortedPlayerCountriesVector;
+        return sorted_player_countries_vector;
     }
 } // namespace vp::utility

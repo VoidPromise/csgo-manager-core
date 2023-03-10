@@ -23,7 +23,8 @@
     <ClInclude Include="src\components\attributes.hpp" />
     <ClInclude Include="src\components\community.hpp" />
     <ClInclude Include="src\components\country.hpp" />
-    <ClInclude Include="src\components\gamedate.hpp" />
+    <ClInclude Include="src\components\gamedata.hpp" />
+    <ClInclude Include="src\components\generationparameters.hpp" />
     <ClInclude Include="src\components\region.hpp" />
     <ClInclude Include="src\components\role.hpp" />
     <ClInclude Include="src\components\metadata.hpp" />
@@ -46,11 +47,11 @@
     <ClInclude Include="src\components\sponsor.hpp" />
     <ClInclude Include="src\components\staff.hpp" />
     <ClInclude Include="src\components\team.hpp" />
-    <ClInclude Include="src\components\tournamentOrganizer.hpp" />
+    <ClInclude Include="src\components\tournament_organizer.hpp" />
     <ClInclude Include="src\components\trait.hpp" />
     <ClInclude Include="src\csgocore.hpp" />
     <ClInclude Include="src\helpers\generator.hpp" />
-    <ClInclude Include="src\utilities\countriesRegionsEnums.hpp" />
+    <ClInclude Include="src\utilities\country_and_region.hpp" />
     <ClInclude Include="src\utilities\countryChoiceFunctions.hpp" />
     <ClInclude Include="src\utilities\countryGetCulture.hpp" />
     <ClInclude Include="src\utilities\countryGetRegion.hpp" />

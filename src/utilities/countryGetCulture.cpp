@@ -2,94 +2,93 @@
 
 namespace vp::utility
 {
-    vp::culture countryGetCulture(availableCountries country)
+    vp::culture to_culture(country_code country)
     {
         switch (country)
         {
-        case availableCountries::Argentina:
+        case country_code::Argentina:
             return vp::culture::argentinian;
-        case availableCountries::Australia:
+        case country_code::Australia:
             return vp::culture::australian;
-        case availableCountries::Brazil:
+        case country_code::Brazil:
             return vp::culture::brazilian;
-        case availableCountries::China:
+        case country_code::China:
             return vp::culture::chinese;
-        case availableCountries::Czech_Republic:
+        case country_code::Czech_Republic:
             return vp::culture::polish; // Need to include czech culture
-        case availableCountries::Denmark:
+        case country_code::Denmark:
             return vp::culture::danish;
-        case availableCountries::Finland:
+        case country_code::Finland:
             return vp::culture::finnish;
-        case availableCountries::France:
+        case country_code::France:
             return vp::culture::french;
-        case availableCountries::Germany:
+        case country_code::Germany:
             return vp::culture::german;
-        case availableCountries::Mongolia:
+        case country_code::Mongolia:
             return vp::culture::turkish; // Need to include mongolian culture
-        case availableCountries::Poland:
+        case country_code::Poland:
             return vp::culture::polish;
-        case availableCountries::Portugal:
+        case country_code::Portugal:
             return vp::culture::portuguese;
-        case availableCountries::Russia:
+        case country_code::Russia:
             return vp::culture::russian;
-        case availableCountries::Sweden:
+        case country_code::Sweden:
             return vp::culture::swedish;
-        case availableCountries::Turkey:
+        case country_code::Turkey:
             return vp::culture::turkish;
-        case availableCountries::Ukraine:
+        case country_code::Ukraine:
             return vp::culture::ukrainian;
-        case availableCountries::United_Kingdom:
+        case country_code::United_Kingdom:
             return vp::culture::british;
-        case availableCountries::United_States:
+        case country_code::United_States:
             return vp::culture::american;
-        case availableCountries::Belgium:
+        case country_code::Belgium:
             return vp::culture::french;
-        case availableCountries::Bosnia:
+        case country_code::Bosnia:
             return vp::culture::turkish;
-        case availableCountries::Bulgaria:
+        case country_code::Bulgaria:
             return vp::culture::bulgarian;
-        case availableCountries::Canada:
+        case country_code::Canada:
             return vp::culture::canadian;
-        case availableCountries::Chile:
+        case country_code::Chile:
             return vp::culture::argentinian;
-        case availableCountries::Estonia:
+        case country_code::Estonia:
             return vp::culture::russian;
-        case availableCountries::Hungary:
+        case country_code::Hungary:
             return vp::culture::polish; // Switch to czech
-        case availableCountries::Israel:
+        case country_code::Israel:
             return vp::culture::russian;
-        case availableCountries::Kazakhstan:
+        case country_code::Kazakhstan:
             return vp::culture::kazakh;
-        case availableCountries::Kosovo:
+        case country_code::Kosovo:
             return vp::culture::turkish;
-        case availableCountries::Latvia:
+        case country_code::Latvia:
             return vp::culture::russian;
-        case availableCountries::Mexico:
+        case country_code::Mexico:
             return vp::culture::mexican;
-        case availableCountries::Montenegro:
+        case country_code::Montenegro:
             return vp::culture::bulgarian;
-        case availableCountries::Netherlands:
+        case country_code::Netherlands:
             return vp::culture::german;
-        case availableCountries::New_Zealand:
+        case country_code::New_Zealand:
             return vp::culture::australian;
-        case availableCountries::Norway:
+        case country_code::Norway:
             return vp::culture::norwegian;
-        case availableCountries::Romania:
+        case country_code::Romania:
+        case country_code::Serbia:
             return vp::culture::bulgarian;
-        case availableCountries::Serbia:
-            return vp::culture::bulgarian;
-        case availableCountries::Slovakia:
+        case country_code::Slovakia:
             return vp::culture::polish; // Switch to czech culture
-        case availableCountries::South_Africa:
+        case country_code::South_Africa:
             return vp::culture::american;
-        case availableCountries::Spain:
+        case country_code::Spain:
             return vp::culture::spanish;
-        case availableCountries::Switzerland:
+        case country_code::Switzerland:
             return vp::culture::german;
-        case availableCountries::Uruguay:
+        case country_code::Uruguay:
             return vp::culture::argentinian;
         default:
             return vp::culture::any;
         };
     }
-}
+} // namespace vp::utility

@@ -57,7 +57,7 @@
     <ClInclude Include="src\components\team.hpp">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\tournamentOrganizer.hpp">
+    <ClInclude Include="src\components\tournament_organizer.hpp">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\sponsor.hpp">
@@ -94,7 +94,7 @@
     <ClInclude Include="src\utilities\wstringutils.hpp">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="src\utilities\countriesRegionsEnums.hpp">
+    <ClInclude Include="src\utilities\country_and_region.hpp">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="src\components\role.hpp">
@@ -124,7 +124,10 @@
     <ClInclude Include="src\utilities\countryGetCulture.hpp">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\gamedate.hpp">
+    <ClInclude Include="src\components\gamedata.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\generationparameters.hpp">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>

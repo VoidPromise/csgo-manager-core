@@ -28,7 +28,7 @@ namespace vp
         [[nodiscard]] bool initialize() const noexcept;
 
         // Save user data to registry.
-        void set_user_data(const component::userdata& data) noexcept;
+        void set_user_data(const component::user_data& data) noexcept;
 
         // Initialize all necessary resources.
         void new_game() noexcept;

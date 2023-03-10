@@ -31,8 +31,8 @@ CheckOptions:
   - key:	readability-identifier-naming.MemberPrefix
     value: _
   - key:	readability-identifier-naming.ConstexprVariablePrefix
-    value: c
+    value: c_
   - key:	readability-identifier-naming.ConstantPrefix
-    value: c
+    value: c_
   - key:	readability-identifier-naming.StaticVariablePrefix
-    value: s
+    value: s_

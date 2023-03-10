@@ -1,9 +1,9 @@
 #pragma once
 
-#include "countriesRegionsEnums.hpp"
+#include "country_and_region.hpp"
 #include "culture.hpp"
 
 namespace vp::utility
 {
-    vp::culture countryGetCulture(availableCountries country);
+    vp::culture to_culture(country_code country);
 }

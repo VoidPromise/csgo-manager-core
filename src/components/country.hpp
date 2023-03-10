@@ -1,13 +1,13 @@
 #pragma once
 
-#include "countriesRegionsEnums.hpp"
+#include "country_and_region.hpp"
 #include "culture.hpp"
 
 namespace vp::component
 {
-	struct country
-	{
-		utility::availableCountries _country;
+    struct country
+    {
+        utility::country_code _country;
         vp::culture _culture;
-	};
-}
+    };
+} // namespace vp::component

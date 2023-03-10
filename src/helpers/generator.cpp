@@ -4,6 +4,8 @@
 #include "countryChoiceFunctions.hpp"
 #include "countryGetCulture.hpp"
 #include "createRandomSkillLevelByTier.hpp"
+#include "gamedata.hpp"
+#include "generationparameters.hpp"
 #include "metadata.hpp"
 #include "name.hpp"
 #include "namegen.hpp"
@@ -20,53 +22,64 @@ namespace vp::helper
 {
     void generate_players(entt::registry& registry)
     {
-        const int numberPlayersToCreate = 600;
+        const std::size_t c_players_count{
+            registry.ctx()
+                .get<component::generation_parameters>()
+                ._players_count};
 
-        const std::vector<entt::entity> players{numberPlayersToCreate,
-                                                registry.create()};
+        const std::vector<entt::entity> c_players{c_players_count,
+                                                  registry.create()};
 
-        const std::vector<int> countriesAndTierSkill =
-            utility::playersCountriesSortBySkillLevel(numberPlayersToCreate);
+        registry.insert<component::player>(c_players.cbegin(),
+                                           c_players.cend());
+
+        registry.insert<component::name>(c_players.cbegin(), c_players.cend());
+
+        registry.insert<component::nickname>(c_players.cbegin(),
+                                             c_players.cend());
+
+        registry.insert<component::country>(c_players.cbegin(),
+                                            c_players.cend());
+
+        registry.insert<component::age>(c_players.cbegin(), c_players.cend());
+
+        registry.insert<component::role>(c_players.cbegin(), c_players.cend());
+
+        registry.insert<component::skill>(c_players.cbegin(), c_players.cend());
+
+        const std::vector<utility::country_code> c_countries_and_tier_skill{
+            utility::players_countries_sort_by_skill_level(c_players_count)};
 
         std::for_each(
-            players.cbegin(), players.cend(),
-            [&registry, countriesAndTierSkill, numberPlayersToCreate,
+            std::execution::par_unseq, c_players.cbegin(), c_players.cend(),
+            [&registry, &c_countries_and_tier_skill, &c_players_count,
              i = 0](const entt::entity& player) mutable {
-                registry.emplace<component::player>(player);
-                registry.emplace<component::name>(player);
-                registry.emplace<component::nickname>(player);
-                registry.emplace<component::country>(player);
-                registry.emplace<component::age>(player);
-                registry.emplace<component::role>(player);
-                registry.emplace<component::skill>(player);
                 registry.patch<component::player>(
                     player, [](component::player& gender) {
                         gender._gender = vp::gender::m;
                     });
                 registry.patch<component::country>(
-                    player,
-                    [countriesAndTierSkill, i](component::country& country) {
-                        country._country =
-                            magic_enum::enum_cast<utility::availableCountries>(
-                                countriesAndTierSkill.at(i))
-                                .value();
+                    player, [c_countries_and_tier_skill,
+                             i](component::country& country) {
+                        country._country = c_countries_and_tier_skill.at(i);
                         country._culture =
-                            utility::countryGetCulture(country._country);
+                            utility::to_culture(country._country);
                     });
 
                 registry.patch<component::skill>(
-                    player, [countriesAndTierSkill, i,
-                             numberPlayersToCreate](component::skill& skill) {
+                    player, [c_countries_and_tier_skill, i,
+                             c_players_count](component::skill& skill) {
                         skill._skillLevel =
                             utility::createRandomSkillLevelByTier(
-                                countriesAndTierSkill.at(
-                                    i + numberPlayersToCreate));
+                                magic_enum::enum_integer(
+                                    c_countries_and_tier_skill.at(
+                                        i + c_players_count)));
                     });
                 i++;
             });
 
         std::for_each(
-            std::execution::par_unseq, players.cbegin(), players.cend(),
+            std::execution::par_unseq, c_players.cbegin(), c_players.cend(),
             [&registry](const entt::entity& player) {
                 vp::gender gender =
                     registry.get<component::player>(player)._gender;
@@ -144,7 +157,7 @@ namespace vp::helper
             });
 
         std::for_each(
-            players.cbegin(), players.cend(),
+            c_players.cbegin(), c_players.cend(),
             [&registry](const entt::entity& player) {
                 registry.patch<component::role>(player, [](component::role&
                                                                role) {
@@ -186,6 +199,11 @@ namespace vp::helper
             date::floor<date::days>(std::chrono::system_clock::now()),
             date::floor<date::days>(std::chrono::system_clock::now()),
             std::uint64_t{0});
+
+        registry.ctx().emplace<component::generation_parameters>(
+            std::size_t{600});
+
+        registry.ctx().emplace<component::game_data>();
     }
 
 } // namespace vp::helper

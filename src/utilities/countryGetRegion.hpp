@@ -1,8 +1,8 @@
 #pragma once
 
-#include "countriesRegionsEnums.hpp"
+#include "country_and_region.hpp"
 
 namespace vp::utility
 {
-	availableRegions countryGetRegion(availableCountries& country);
+    region_code countryGetRegion(country_code& country);
 }
