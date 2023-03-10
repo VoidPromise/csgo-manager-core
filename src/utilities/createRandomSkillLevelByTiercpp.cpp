@@ -4,7 +4,7 @@
 
 namespace vp::utility
 {
-    std::uint8_t createRandomSkillLevelByTier(std::size_t tier)
+    std::uint8_t create_random_skill_level_by_tier(std::size_t tier)
     {
         switch (tier)
         {

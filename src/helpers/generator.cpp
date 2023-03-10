@@ -20,6 +20,21 @@
 
 namespace vp::helper
 {
+    namespace
+    {
+        void generate_name(component::name& name, const culture player_culture)
+        {
+            const std::size_t c_name_count{
+                effolkronium::random_thread_local::get<std::size_t>(1, 2)};
+
+            const std::size_t c_surname_count{
+                effolkronium::random_thread_local::get<std::size_t>(1, 3)};
+
+            vp::helper::patch_name(name, gender::m, player_culture,
+                                   c_name_count, c_surname_count);
+        }
+    } // namespace
+
     void generate_players(entt::registry& registry)
     {
         const std::size_t c_players_count{
@@ -33,13 +48,13 @@ namespace vp::helper
         registry.insert<component::player>(c_players.cbegin(),
                                            c_players.cend());
 
-        registry.insert<component::name>(c_players.cbegin(), c_players.cend());
-
         registry.insert<component::nickname>(c_players.cbegin(),
                                              c_players.cend());
 
         registry.insert<component::country>(c_players.cbegin(),
                                             c_players.cend());
+
+        registry.insert<component::name>(c_players.cbegin(), c_players.cend());
 
         registry.insert<component::age>(c_players.cbegin(), c_players.cend());
 
@@ -51,13 +66,9 @@ namespace vp::helper
             utility::players_countries_sort_by_skill_level(c_players_count)};
 
         std::for_each(
-            std::execution::par_unseq, c_players.cbegin(), c_players.cend(),
+            c_players.cbegin(), c_players.cend(),
             [&registry, &c_countries_and_tier_skill, &c_players_count,
              i = 0](const entt::entity& player) mutable {
-                registry.patch<component::player>(
-                    player, [](component::player& gender) {
-                        gender._gender = vp::gender::m;
-                    });
                 registry.patch<component::country>(
                     player, [c_countries_and_tier_skill,
                              i](component::country& country) {
@@ -70,7 +81,7 @@ namespace vp::helper
                     player, [c_countries_and_tier_skill, i,
                              c_players_count](component::skill& skill) {
                         skill._skillLevel =
-                            utility::createRandomSkillLevelByTier(
+                            utility::create_random_skill_level_by_tier(
                                 magic_enum::enum_integer(
                                     c_countries_and_tier_skill.at(
                                         i + c_players_count)));
@@ -79,70 +90,13 @@ namespace vp::helper
             });
 
         std::for_each(
-            std::execution::par_unseq, c_players.cbegin(), c_players.cend(),
+            c_players.cbegin(), c_players.cend(),
             [&registry](const entt::entity& player) {
-                vp::gender gender =
-                    registry.get<component::player>(player)._gender;
                 vp::culture culture =
                     registry.get<component::country>(player)._culture;
-                registry.patch<component::name>(player, [gender, culture](
-                                                            component::name&
-                                                                name) {
-                    int random =
-                        effolkronium::random_thread_local::get<int>(1, 30);
-                    switch (random)
-                    {
-                    case 10:
-                        name._first_name = vp::helper::ng::instance().get_name(
-                                               gender, culture) +
-                                           L" " +
-                                           vp::helper::ng::instance().get_name(
-                                               gender, culture);
-                        name._last_name =
-                            vp::helper::ng::instance().get_surname(culture);
-                        name._internal_string =
-                            name._first_name + L" " + name._last_name;
-                        name._internal_container.push_back(name._first_name);
-                        name._internal_container.push_back(name._last_name);
-                        break;
-                    case 20:
-                        name._first_name = vp::helper::ng::instance().get_name(
-                            gender, culture);
-                        name._last_name =
-                            vp::helper::ng::instance().get_surname(culture) +
-                            L" " +
-                            vp::helper::ng::instance().get_surname(culture);
-                        name._internal_string =
-                            name._first_name + L" " + name._last_name;
-                        name._internal_container.push_back(name._first_name);
-                        name._internal_container.push_back(name._last_name);
-                        break;
-                    case 30:
-                        name._first_name = vp::helper::ng::instance().get_name(
-                                               gender, culture) +
-                                           L" " +
-                                           vp::helper::ng::instance().get_name(
-                                               gender, culture);
-                        name._last_name =
-                            vp::helper::ng::instance().get_surname(culture) +
-                            L" " +
-                            vp::helper::ng::instance().get_surname(culture);
-                        name._internal_string =
-                            name._first_name + L" " + name._last_name;
-                        name._internal_container.push_back(name._first_name);
-                        name._internal_container.push_back(name._last_name);
-                        break;
-                    default:
-                        name._first_name = vp::helper::ng::instance().get_name(
-                            gender, culture);
-                        name._last_name =
-                            vp::helper::ng::instance().get_surname(culture);
-                        name._internal_string =
-                            name._first_name + L" " + name._last_name;
-                        name._internal_container.push_back(name._first_name);
-                        name._internal_container.push_back(name._last_name);
-                    }
-                });
+                registry.patch<component::name>(
+                    player,
+                    std::bind(generate_name, std::placeholders::_1, culture));
                 registry.patch<component::nickname>(
                     player,
                     [&registry, &player](component::nickname& nickname) {
