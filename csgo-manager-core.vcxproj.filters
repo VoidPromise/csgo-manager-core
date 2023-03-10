@@ -57,7 +57,7 @@
     <ClInclude Include="src\components\team.hpp">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\tournament_organizer.hpp">
+    <ClInclude Include="src\components\tournamentorganizer.hpp">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\sponsor.hpp">
@@ -81,7 +81,7 @@
     <ClInclude Include="src\components\practice.hpp">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\time_slot.hpp">
+    <ClInclude Include="src\components\timeslot.hpp">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="src\helpers\generator.hpp">

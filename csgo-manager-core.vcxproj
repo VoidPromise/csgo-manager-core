@@ -29,7 +29,7 @@
     <ClInclude Include="src\components\role.hpp" />
     <ClInclude Include="src\components\metadata.hpp" />
     <ClInclude Include="src\components\userdata.hpp" />
-    <ClInclude Include="src\components\time_slot.hpp" />
+    <ClInclude Include="src\components\timeslot.hpp" />
     <ClInclude Include="src\components\description.hpp" />
     <ClInclude Include="src\components\timestamp.hpp" />
     <ClInclude Include="src\components\manager.hpp" />
@@ -47,7 +47,7 @@
     <ClInclude Include="src\components\sponsor.hpp" />
     <ClInclude Include="src\components\staff.hpp" />
     <ClInclude Include="src\components\team.hpp" />
-    <ClInclude Include="src\components\tournament_organizer.hpp" />
+    <ClInclude Include="src\components\tournamentorganizer.hpp" />
     <ClInclude Include="src\components\trait.hpp" />
     <ClInclude Include="src\csgocore.hpp" />
     <ClInclude Include="src\helpers\generator.hpp" />
