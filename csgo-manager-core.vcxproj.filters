@@ -130,7 +130,7 @@
     <ClInclude Include="src\components\generationparameters.hpp">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\helpers\jsonarchive.hpp">
+    <ClInclude Include="src\helpers\serializer.hpp">
       <Filter>Helpers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -156,6 +156,9 @@
     </ClCompile>
     <ClCompile Include="src\utilities\countryGetCulture.cpp">
       <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helpers\serializer.cpp">
+      <Filter>Helpers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

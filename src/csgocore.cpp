@@ -1,8 +1,13 @@
 #include "csgocore.hpp"
+
+#include <fstream>
+
 #include "generator.hpp"
+#include "metadata.hpp"
 #include "namegen.hpp"
 #include "nicknamegen.hpp"
-#include "jsonarchive.hpp"
+#include "pch.h"
+#include "serializer.hpp"
 
 namespace vp
 {
@@ -39,17 +44,18 @@ namespace vp
     {
     }
 
-    bool csgocore::load_state(
-        const std::filesystem::path& origin) const noexcept
+    bool csgocore::load_state(const std::filesystem::path& origin) noexcept
     {
-        return false;
+        _registry.clear();
+
+        helper::load_registry(_registry, origin);
     }
 
-    bool csgocore::save_state(const std::filesystem::path& destination) const noexcept
+    bool csgocore::save_state(
+        const std::filesystem::path& destination) const noexcept
     {
-        //entt::basic_snapshot<entt::registry> snapshot{_registry};
-
-        return false;
+        helper::save_registry(_registry, destination,
+                              helper::save_format::json);
     }
 
     bool csgocore::load_configuration() const noexcept
