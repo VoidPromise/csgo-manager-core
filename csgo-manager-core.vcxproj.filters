@@ -130,6 +130,9 @@
     <ClInclude Include="src\components\generationparameters.hpp">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="src\helpers\jsonarchive.hpp">
+      <Filter>Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\helpers\generator.cpp">

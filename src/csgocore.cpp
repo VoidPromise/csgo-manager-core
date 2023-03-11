@@ -2,6 +2,7 @@
 #include "generator.hpp"
 #include "namegen.hpp"
 #include "nicknamegen.hpp"
+#include "jsonarchive.hpp"
 
 namespace vp
 {
@@ -44,9 +45,10 @@ namespace vp
         return false;
     }
 
-    bool csgocore::save_state(
-        const std::filesystem::path& destination) const noexcept
+    bool csgocore::save_state(const std::filesystem::path& destination) const noexcept
     {
+        //entt::basic_snapshot<entt::registry> snapshot{_registry};
+
         return false;
     }
 

@@ -22,7 +22,7 @@ namespace vp::helper
 {
     namespace
     {
-        void generate_name(component::name& name, const culture player_culture)
+        void generate_name(component::name& name, const culture c_player_culture)
         {
             const std::size_t c_name_count{
                 effolkronium::random_thread_local::get<std::size_t>(1, 2)};
@@ -30,7 +30,7 @@ namespace vp::helper
             const std::size_t c_surname_count{
                 effolkronium::random_thread_local::get<std::size_t>(1, 3)};
 
-            vp::helper::patch_name(name, gender::m, player_culture,
+            vp::helper::patch_name(name, gender::m, c_player_culture,
                                    c_name_count, c_surname_count);
         }
     } // namespace
