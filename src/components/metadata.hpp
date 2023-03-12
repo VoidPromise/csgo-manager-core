@@ -1,8 +1,8 @@
 #pragma once
+#include "pch.h"
+
 #include <array>
 #include <cstdint>
-
-#include "pch.h"
 
 namespace vp::component
 {

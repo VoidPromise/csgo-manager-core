@@ -1,9 +1,9 @@
 #pragma once
 
-#include <filesystem>
-
 #include "pch.h"
-#include <userdata.hpp>
+#include "userdata.hpp"
+
+#include <filesystem>
 
 namespace vp
 {
@@ -41,7 +41,7 @@ namespace vp
 
         // Load a saved state from filesystem,
         [[nodiscard]] bool load_state(
-            const std::filesystem::path& origin) const noexcept;
+            const std::filesystem::path& origin) noexcept;
 
         // Save iternal state of the engine.
         [[nodiscard]] bool save_state(
