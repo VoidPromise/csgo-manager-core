@@ -50,6 +50,7 @@
     <ClInclude Include="src\components\tournamentorganizer.hpp" />
     <ClInclude Include="src\components\trait.hpp" />
     <ClInclude Include="src\csgocore.hpp" />
+    <ClInclude Include="src\helpers\cerealfunctions.hpp" />
     <ClInclude Include="src\helpers\generator.hpp" />
     <ClInclude Include="src\helpers\serializer.hpp" />
     <ClInclude Include="src\utilities\country_and_region.hpp" />

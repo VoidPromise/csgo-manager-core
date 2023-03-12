@@ -1,9 +1,9 @@
 #pragma once
-#include <string>
-
 #include "country_and_region.hpp"
 #include "name.hpp"
 #include "pch.h"
+
+#include <string>
 
 namespace vp::component
 {

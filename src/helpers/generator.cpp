@@ -1,4 +1,5 @@
 #include "generator.hpp"
+
 #include "age.hpp"
 #include "country.hpp"
 #include "countryChoiceFunctions.hpp"
@@ -22,7 +23,8 @@ namespace vp::helper
 {
     namespace
     {
-        void generate_name(component::name& name, const culture c_player_culture)
+        void generate_name(component::name& name,
+                           const culture c_player_culture)
         {
             const std::size_t c_name_count{
                 effolkronium::random_thread_local::get<std::size_t>(1, 2)};

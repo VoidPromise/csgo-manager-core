@@ -133,6 +133,9 @@
     <ClInclude Include="src\helpers\serializer.hpp">
       <Filter>Helpers</Filter>
     </ClInclude>
+    <ClInclude Include="src\helpers\cerealfunctions.hpp">
+      <Filter>Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\helpers\generator.cpp">

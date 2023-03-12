@@ -1,7 +1,7 @@
 #pragma once
-#include <vector>
-
 #include "country_and_region.hpp"
+
+#include <vector>
 
 namespace vp::utility
 {

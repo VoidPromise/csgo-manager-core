@@ -1,4 +1,5 @@
 #include "countryChoiceFunctions.hpp"
+
 #include "pch.h"
 
 namespace vp::utility
@@ -40,13 +41,13 @@ namespace vp::utility
     std::vector<country_code> players_countries_sort_by_skill_level(
         const std::size_t c_players_count)
     {
-        std::vector<country_code> sorted_player_countries_vector(c_players_count *
-                                                                 2);
+        std::vector<country_code> sorted_player_countries_vector(
+            c_players_count * 2);
 
         int begin_index = 0;
         int end_index = (int)std::round(
             c_players_count * 0.00184); // tier 1 = define 2 highest overall for
-                                      // 1080 players or 180 teams
+                                        // 1080 players or 180 teams
         std::vector<country_code> available_countries_for_tier = {
             country_code::Sweden, country_code::Sweden,  country_code::France,
             country_code::France, country_code::Ukraine, country_code::Ukraine,
@@ -226,7 +227,7 @@ namespace vp::utility
 
         begin_index = end_index;
         end_index = c_players_count; // tier 5 = define 901 - 1080 for 1080
-                                   // players or 180 teams
+                                     // players or 180 teams
         sorted_player_countries_vector = players_get_countries_by_ranking_range(
             sorted_player_countries_vector, begin_index, end_index,
             available_countries_for_tier, 900);

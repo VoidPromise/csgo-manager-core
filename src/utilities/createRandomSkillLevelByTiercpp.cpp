@@ -1,5 +1,4 @@
 #include "createRandomSkillLevelByTier.hpp"
-
 #include "pch.h"
 
 namespace vp::utility

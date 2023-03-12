@@ -1,13 +1,13 @@
 #include "csgocore.hpp"
 
-#include <fstream>
-
 #include "generator.hpp"
 #include "metadata.hpp"
 #include "namegen.hpp"
 #include "nicknamegen.hpp"
 #include "pch.h"
 #include "serializer.hpp"
+
+#include <fstream>
 
 namespace vp
 {
@@ -54,8 +54,7 @@ namespace vp
     bool csgocore::save_state(
         const std::filesystem::path& destination) const noexcept
     {
-        helper::save_registry(_registry, destination,
-                              helper::save_format::json);
+        helper::save_registry(_registry, destination);
     }
 
     bool csgocore::load_configuration() const noexcept
