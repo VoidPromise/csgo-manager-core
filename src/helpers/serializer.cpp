@@ -17,7 +17,8 @@ namespace vp::helper
 
             entt::snapshot_loader{registry}
                 .entities(input)
-                .component<component::metadata>(input);
+                .component<component::metadata, component::user_data,
+                           component::game_data>(input);
 
             return true;
         }
@@ -32,13 +33,30 @@ namespace vp::helper
     {
         try
         {
+            std::filesystem::path info_path{destination};
+
+            info_path.replace_extension("saveinfo");
+
             std::ofstream output_stream{destination, std::ios::binary};
+
+            std::ofstream output_info_stream{destination, std::ios::binary};
 
             cereal::BinaryOutputArchive output{output_stream};
 
+            cereal::BinaryOutputArchive output_info{output_info_stream};
+
             entt::snapshot{registry}
                 .entities(output)
-                .component<component::metadata>(output);
+                .component<component::age, component::country,
+                           component::game_data, component::metadata,
+                           component::name, component::nickname,
+                           component::player, component::role, component::skill,
+                           component::user_data>(output);
+
+            entt::snapshot{registry}
+                .entities(output)
+                .component<component::metadata, component::user_data,
+                           component::game_data>(output_info);
 
             return true;
         }

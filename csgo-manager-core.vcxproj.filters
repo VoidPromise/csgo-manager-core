@@ -136,6 +136,9 @@
     <ClInclude Include="src\helpers\cerealfunctions.hpp">
       <Filter>Helpers</Filter>
     </ClInclude>
+    <ClInclude Include="src\utilities\csversion.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\helpers\generator.cpp">

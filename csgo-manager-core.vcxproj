@@ -58,6 +58,7 @@
     <ClInclude Include="src\utilities\countryGetCulture.hpp" />
     <ClInclude Include="src\utilities\countryGetRegion.hpp" />
     <ClInclude Include="src\utilities\createRandomSkillLevelByTier.hpp" />
+    <ClInclude Include="src\utilities\csversion.hpp" />
     <ClInclude Include="src\utilities\rolesEnum.hpp" />
     <ClInclude Include="src\utilities\wstringutils.hpp" />
   </ItemGroup>

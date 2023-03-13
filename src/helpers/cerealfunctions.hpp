@@ -1,8 +1,15 @@
 #pragma once
 
+#include "age.hpp"
+#include "country.hpp"
+#include "gamedata.hpp"
 #include "metadata.hpp"
 #include "name.hpp"
+#include "nickname.hpp"
 #include "pch.h"
+#include "player.hpp"
+#include "role.hpp"
+#include "skill.hpp"
 #include "userdata.hpp"
 
 namespace cereal
@@ -39,17 +46,29 @@ namespace cereal
     void load(Archive& archive, vp::component::name& data)
     {
         archive(data._internal_container);
-        data._first_name = data._internal_container.begin();
-        data._last_name = data._internal_container.rbegin();
+        data._first_name = *data._internal_container.begin();
+        data._last_name = *data._internal_container.rbegin();
         data._internal_string =
             vp::helper::accumulate_name(data._internal_container);
     }
 
     template <typename Archive>
-    void serialize(Archive& archive, vp::component::user_data& data)
+    void serialize(Archive& archive, vp::component::age& data)
     {
-        archive(data._birth, data._country, data._name, data._nickname,
-                data._username);
+        archive(data._birth, data._value);
+    }
+
+    template <typename Archive>
+    void serialize(Archive& archive, vp::component::country& data)
+    {
+        archive(data._country, data._culture);
+    }
+
+    template <typename Archive>
+    void serialize(Archive& archive, vp::component::game_data& data)
+    {
+        archive(data._current_day, data._description, data._first_day,
+                data._title_long, data._title_short, data._version);
     }
 
     template <typename Archive>
@@ -57,5 +76,38 @@ namespace cereal
     {
         archive(data._created, data._current_tick, data._last_modification,
                 data._version);
+    }
+
+    template <typename Archive>
+    void serialize(Archive& archive, vp::component::nickname& data)
+    {
+        archive(data._internal_string, data._original_string);
+    }
+
+    template <typename Archive>
+    void serialize(Archive& archive, vp::component::role& data)
+    {
+        archive(data._primaryRoleCT, data._primaryRoleTR, data._secondaryRoleCT,
+                data._secondaryRoleTR);
+    }
+
+    template <typename Archive>
+    void serialize(Archive& archive, vp::component::skill& data)
+    {
+        archive(data._ancientPositions, data._anubisPositions,
+                data._cachePositions, data._cobblestonePositions,
+                data._dust2Positions, data._generalAttributes,
+                data._gunsProficiency, data._infernoPositions,
+                data._mapKnowledge, data._miragePositions, data._nukePositions,
+                data._overpassPositions, data._roleKnowledge, data._skillLevel,
+                data._trainPositions, data._utilityProficiency,
+                data._vertigoPositions);
+    }
+
+    template <typename Archive>
+    void serialize(Archive& archive, vp::component::user_data& data)
+    {
+        archive(data._birth, data._country, data._name, data._nickname,
+                data._username);
     }
 } // namespace cereal

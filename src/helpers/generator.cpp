@@ -159,7 +159,12 @@ namespace vp::helper
         registry.ctx().emplace<component::generation_parameters>(
             std::size_t{600});
 
-        registry.ctx().emplace<component::game_data>();
+        registry.ctx().emplace<component::game_data>(
+            "CS:GO", "Counter Strike: Global Offensive",
+            "Counter-Strike: Global Offensive (CS:GO) is a 2012 multiplayer "
+            "tactical first-person shooter developed by Valve and Hidden Path "
+            "Entertainment.",
+            utility::cs_version::global_offensive, date::March / 01 / 2013);
     }
 
 } // namespace vp::helper
