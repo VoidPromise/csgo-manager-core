@@ -7,18 +7,21 @@
 namespace vp::helper
 {
     bool load_registry(entt::registry& registry,
-                       const std::filesystem::path& origin)
+                       const std::filesystem::path& origin) noexcept
     {
         try
         {
-            std::ifstream input_stream{origin};
+            std::ifstream input_stream{origin, std::ios::binary};
 
             cereal::BinaryInputArchive input{input_stream};
 
             entt::snapshot_loader{registry}
                 .entities(input)
-                .component<component::metadata, component::user_data,
-                           component::game_data>(input);
+                .component<component::age, component::country,
+                           component::game_data, component::metadata,
+                           component::name, component::nickname,
+                           component::player, component::role, component::skill,
+                           component::user_data>(input);
 
             return true;
         }
@@ -29,7 +32,7 @@ namespace vp::helper
     }
 
     bool save_registry(const entt::registry& registry,
-                       const std::filesystem::path& destination)
+                       const std::filesystem::path& destination) noexcept
     {
         try
         {
@@ -54,7 +57,7 @@ namespace vp::helper
                            component::user_data>(output);
 
             entt::snapshot{registry}
-                .entities(output)
+                .entities(output_info)
                 .component<component::metadata, component::user_data,
                            component::game_data>(output_info);
 
@@ -63,6 +66,48 @@ namespace vp::helper
         catch (std::exception& e)
         {
             return false;
+        }
+    }
+    save_info load_save_info(const std::filesystem::path& origin) noexcept
+    {
+        try
+        {
+            std::filesystem::path info_path{origin};
+
+            info_path.replace_extension("saveinfo");
+
+            std::ifstream input_info_stream{info_path, std::ios::binary};
+
+            cereal::BinaryInputArchive input_info{input_info_stream};
+
+            entt::registry temp_registry{};
+
+            entt::snapshot_loader{temp_registry}
+                .entities(input_info)
+                .component<component::metadata, component::user_data,
+                           component::game_data>(input_info);
+
+            const component::metadata c_metadata{
+                temp_registry.ctx().get<component::metadata>()};
+
+            const component::user_data c_user_data{
+                temp_registry.ctx().get<component::user_data>()};
+
+            const component::game_data c_game_data{
+                temp_registry.ctx().get<component::game_data>()};
+
+            return {true,
+                    c_metadata._version,
+                    c_metadata._created,
+                    c_metadata._last_modification,
+                    c_game_data._version,
+                    c_game_data._title_short,
+                    c_game_data._current_day,
+                    c_user_data._username};
+        }
+        catch (const std::exception& e)
+        {
+            return save_info{};
         }
     }
 } // namespace vp::helper

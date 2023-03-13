@@ -1,12 +1,21 @@
 #pragma once
 
 #include "pch.h"
-#include "userdata.hpp"
 
 #include <filesystem>
 
 namespace vp
 {
+    namespace helper
+    {
+        struct save_info;
+    }
+
+    namespace component
+    {
+        struct user_data;
+    }
+
     class csgocore
     {
       public:
@@ -46,6 +55,10 @@ namespace vp
         // Save iternal state of the engine.
         [[nodiscard]] bool save_state(
             const std::filesystem::path& destination) const noexcept;
+
+        // Save iternal state of the engine.
+        [[nodiscard]] helper::save_info request_save_info(
+            const std::filesystem::path& origin) const noexcept;
 
       private:
         // Csgocore registry, holds all entities/components.

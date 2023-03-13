@@ -6,6 +6,7 @@
 #include "nicknamegen.hpp"
 #include "pch.h"
 #include "serializer.hpp"
+#include "userdata.hpp"
 
 #include <fstream>
 
@@ -55,6 +56,12 @@ namespace vp
         const std::filesystem::path& destination) const noexcept
     {
         helper::save_registry(_registry, destination);
+    }
+
+    helper::save_info csgocore::request_save_info(
+        const std::filesystem::path& origin) const noexcept
+    {
+        return helper::load_save_info(origin);
     }
 
     bool csgocore::load_configuration() const noexcept
