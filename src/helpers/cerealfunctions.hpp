@@ -87,21 +87,21 @@ namespace cereal
     template <typename Archive>
     void serialize(Archive& archive, vp::component::role& data)
     {
-        archive(data._primaryRoleCT, data._primaryRoleTR, data._secondaryRoleCT,
-                data._secondaryRoleTR);
+        archive(data._primary_role_ct, data._primary_role_tr, data._secondary_role_ct,
+                data._secondary_role_tr);
     }
 
     template <typename Archive>
     void serialize(Archive& archive, vp::component::skill& data)
     {
-        archive(data._ancientPositions, data._anubisPositions,
-                data._cachePositions, data._cobblestonePositions,
-                data._dust2Positions, data._generalAttributes,
-                data._gunsProficiency, data._infernoPositions,
-                data._mapKnowledge, data._miragePositions, data._nukePositions,
-                data._overpassPositions, data._roleKnowledge, data._skill_level,
-                data._trainPositions, data._utilityProficiency,
-                data._vertigoPositions);
+        archive(data._ancient_positions, data._anubis_positions,
+                data._cache_positions, data._cobblestone_positions,
+                data._dust2_positions, data._general_attributes,
+                data._guns_proficiency, data._inferno_positions,
+                data._map_knowledge, data._mirage_positions, data._nuke_positions,
+                data._overpass_positions, data._role_knowledge, data._skill_level,
+                data._train_positions, data._grenades_proficiency,
+                data._vertigo_positions);
     }
 
     template <typename Archive>
