@@ -1,14 +1,14 @@
 #pragma once
 
-#include "rolesEnum.hpp"
+#include "rolesenum.hpp"
 
 namespace vp::component
 {
     struct role
     {
-        utility::rolesCT _primaryRoleCT;
-        utility::rolesCT _secondaryRoleCT;
-        utility::rolesTR _primaryRoleTR;
-        utility::rolesTR _secondaryRoleTR;
+        utility::roles _primary_role_ct;
+        utility::roles _secondary_role_ct;
+        utility::roles _primary_role_tr;
+        utility::roles _secondary_role_tr;
     };
 } // namespace vp::component

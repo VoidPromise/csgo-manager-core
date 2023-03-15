@@ -99,7 +99,7 @@ namespace cereal
                 data._dust2Positions, data._generalAttributes,
                 data._gunsProficiency, data._infernoPositions,
                 data._mapKnowledge, data._miragePositions, data._nukePositions,
-                data._overpassPositions, data._roleKnowledge, data._skillLevel,
+                data._overpassPositions, data._roleKnowledge, data._skill_level,
                 data._trainPositions, data._utilityProficiency,
                 data._vertigoPositions);
     }

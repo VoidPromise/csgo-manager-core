@@ -53,24 +53,37 @@
     <ClInclude Include="src\helpers\cerealfunctions.hpp" />
     <ClInclude Include="src\helpers\generator.hpp" />
     <ClInclude Include="src\helpers\serializer.hpp" />
-    <ClInclude Include="src\utilities\country_and_region.hpp" />
-    <ClInclude Include="src\utilities\countryChoiceFunctions.hpp" />
-    <ClInclude Include="src\utilities\countryGetCulture.hpp" />
-    <ClInclude Include="src\utilities\countryGetRegion.hpp" />
-    <ClInclude Include="src\utilities\createRandomSkillLevelByTier.hpp" />
+    <ClInclude Include="src\utilities\ancientpositionsenum.hpp" />
+    <ClInclude Include="src\utilities\anubispositionsenum.hpp" />
+    <ClInclude Include="src\utilities\cachepositionsenum.hpp" />
+    <ClInclude Include="src\utilities\cobblestonepositionsenum.hpp" />
+    <ClInclude Include="src\utilities\countryenum.hpp" />
+    <ClInclude Include="src\utilities\countrychoicefunctions.hpp" />
+    <ClInclude Include="src\utilities\countrytoculture.hpp" />
+    <ClInclude Include="src\utilities\countrytoregion.hpp" />
     <ClInclude Include="src\utilities\csversion.hpp" />
-    <ClInclude Include="src\utilities\rolesEnum.hpp" />
+    <ClInclude Include="src\utilities\dust2positionsenum.hpp" />
+    <ClInclude Include="src\utilities\infernopositionsenum.hpp" />
+    <ClInclude Include="src\utilities\mapsenum.hpp" />
+    <ClInclude Include="src\utilities\miragepositionsenum.hpp" />
+    <ClInclude Include="src\utilities\nukepositionsenum.hpp" />
+    <ClInclude Include="src\utilities\overpasspositionsenum.hpp" />
+    <ClInclude Include="src\utilities\regionenum.hpp" />
+    <ClInclude Include="src\utilities\rolesenum.hpp" />
+    <ClInclude Include="src\utilities\trainpositionsenum.hpp" />
+    <ClInclude Include="src\utilities\grenadesenum.hpp" />
+    <ClInclude Include="src\utilities\vertigopositionsenum.hpp" />
     <ClInclude Include="src\utilities\wstringutils.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\csgocore.cpp" />
     <ClCompile Include="src\helpers\generator.cpp" />
     <ClCompile Include="src\helpers\serializer.cpp" />
-    <ClCompile Include="src\utilities\countryChoiceFunctions.cpp" />
-    <ClCompile Include="src\utilities\countryGetCulture.cpp" />
-    <ClCompile Include="src\utilities\countryGetRegion.cpp" />
-    <ClCompile Include="src\utilities\createRandomSkillLevelByTiercpp.cpp" />
-    <ClCompile Include="src\utilities\skillsEnum.hpp" />
+    <ClCompile Include="src\utilities\countrychoicefunctions.cpp" />
+    <ClCompile Include="src\utilities\countrytoculture.cpp" />
+    <ClCompile Include="src\utilities\countrytoregion.cpp" />
+    <ClCompile Include="src\utilities\gunsenum.hpp" />
+    <ClCompile Include="src\utilities\skillsenum.hpp" />
     <ClCompile Include="src\utilities\wstringutils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -83,6 +96,10 @@
     <ProjectReference Include="..\third-party\third-party.vcxproj">
       <Project>{f1e85fc6-f717-4e42-b97f-dd50628e11a5}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".clang-format" />
+    <None Include=".clang-tidy" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

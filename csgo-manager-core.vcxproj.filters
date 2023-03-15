@@ -13,6 +13,9 @@
     <Filter Include="Utilities">
       <UniqueIdentifier>{6dbf4f4b-b535-4c8f-89fe-b3e460df4c52}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CsEnums">
+      <UniqueIdentifier>{88a0c898-1d36-4450-9cf5-442925a510ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\components\organization.hpp">
@@ -94,13 +97,13 @@
     <ClInclude Include="src\utilities\wstringutils.hpp">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="src\utilities\country_and_region.hpp">
+    <ClInclude Include="src\utilities\countryenum.hpp">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="src\components\role.hpp">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\utilities\countryGetRegion.hpp">
+    <ClInclude Include="src\utilities\countrytoregion.hpp">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="src\components\region.hpp">
@@ -112,16 +115,10 @@
     <ClInclude Include="src\components\userdata.hpp">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\utilities\rolesEnum.hpp">
+    <ClInclude Include="src\utilities\countrychoicefunctions.hpp">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="src\utilities\countryChoiceFunctions.hpp">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utilities\createRandomSkillLevelByTier.hpp">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utilities\countryGetCulture.hpp">
+    <ClInclude Include="src\utilities\countrytoculture.hpp">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="src\components\gamedata.hpp">
@@ -139,6 +136,51 @@
     <ClInclude Include="src\utilities\csversion.hpp">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="src\utilities\regionenum.hpp">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\rolesenum.hpp">
+      <Filter>CsEnums</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\grenadesenum.hpp">
+      <Filter>CsEnums</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\mapsenum.hpp">
+      <Filter>CsEnums</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\ancientpositionsenum.hpp">
+      <Filter>CsEnums</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\anubispositionsenum.hpp">
+      <Filter>CsEnums</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\cachepositionsenum.hpp">
+      <Filter>CsEnums</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\cobblestonepositionsenum.hpp">
+      <Filter>CsEnums</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\dust2positionsenum.hpp">
+      <Filter>CsEnums</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\infernopositionsenum.hpp">
+      <Filter>CsEnums</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\miragepositionsenum.hpp">
+      <Filter>CsEnums</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\nukepositionsenum.hpp">
+      <Filter>CsEnums</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\overpasspositionsenum.hpp">
+      <Filter>CsEnums</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\trainpositionsenum.hpp">
+      <Filter>CsEnums</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\vertigopositionsenum.hpp">
+      <Filter>CsEnums</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\helpers\generator.cpp">
@@ -148,23 +190,27 @@
     <ClCompile Include="src\utilities\wstringutils.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="src\utilities\countryGetRegion.cpp">
+    <ClCompile Include="src\utilities\countrytoregion.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="src\utilities\skillsEnum.hpp">
+    <ClCompile Include="src\utilities\countrychoicefunctions.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="src\utilities\countryChoiceFunctions.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="src\utilities\createRandomSkillLevelByTiercpp.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="src\utilities\countryGetCulture.cpp">
+    <ClCompile Include="src\utilities\countrytoculture.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="src\helpers\serializer.cpp">
       <Filter>Helpers</Filter>
     </ClCompile>
+    <ClCompile Include="src\utilities\skillsenum.hpp">
+      <Filter>CsEnums</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utilities\gunsenum.hpp">
+      <Filter>CsEnums</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".clang-format" />
+    <None Include=".clang-tidy" />
   </ItemGroup>
 </Project>

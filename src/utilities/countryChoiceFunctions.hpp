@@ -1,15 +1,26 @@
 #pragma once
-#include "country_and_region.hpp"
+
+#include "countryenum.hpp"
 
 #include <vector>
 
 namespace vp::utility
 {
-    std::vector<country_code> players_get_countries_by_ranking_range(
-        std::vector<country_code> sorted_player_countries_vector,
-        int begin_index, int end_index,
-        std::vector<country_code> countries_to_draw, int tier_player);
+    struct country_skill_level
+    {
+        country_code _country;
+        std::uint8_t _skill_level;
+    };
 
-    std::vector<country_code> players_countries_sort_by_skill_level(
-        const std::size_t players_count);
+    std::uint8_t tier_get_skill_level(const char& tier);
+
+    void choose_random_countries_for_tier(
+        std::vector<country_skill_level>& sorted_countries_tiers_vector,
+        int& begin_index, const int& c_end_index,
+        const std::vector<country_code>& c_countries_to_draw,
+        const char& c_tier_player);
+
+    std::vector<country_skill_level> vector_countries_and_tiers_for_players(
+        const int c_players_count);
+
 } // namespace vp::utility
