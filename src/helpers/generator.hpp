@@ -1,7 +1,7 @@
 #pragma once
 
-#include "pch.h"
 #include "countrychoicefunctions.hpp"
+#include "pch.h"
 
 namespace vp::helper
 {
@@ -24,6 +24,9 @@ namespace vp::helper
         void insert_player_role_attributes(
             entt::registry& registry,
             const std::vector<entt::entity>& c_players);
+
+        void define_roles(entt::registry& registry,
+                                   const entt::entity& player);
     } // namespace
 
     void generate_coaches();

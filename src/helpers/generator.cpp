@@ -57,6 +57,27 @@ namespace vp::helper
         //} Não entendi direito como usar, daí fiz como eu sabia e amanhã tu me
         // explica
 
+        void assign_roles(component::role& role)
+        {
+            role._primary_role_ct = magic_enum::enum_value<utility::roles>(
+                effolkronium::random_thread_local::get<int>(0, 4));
+            role._primary_role_tr = magic_enum::enum_value<utility::roles>(
+                effolkronium::random_thread_local::get<int>(5, 9));
+            utility::roles random_role{};
+            do
+            {
+                random_role = magic_enum::enum_value<utility::roles>(
+                    effolkronium::random_thread_local::get<int>(0, 4));
+            } while (role._primary_role_ct == random_role);
+            role._secondary_role_ct = random_role;
+            do
+            {
+                random_role = magic_enum::enum_value<utility::roles>(
+                    effolkronium::random_thread_local::get<int>(5, 9));
+            } while (role._primary_role_tr == random_role);
+            role._secondary_role_tr = random_role;
+        }
+
         void insert_player_country_skill_level_attributes(
             entt::registry& registry,
             const std::vector<entt::entity>& c_players,
@@ -118,44 +139,11 @@ namespace vp::helper
             entt::registry& registry,
             const std::vector<entt::entity>& c_players)
         {
-            std::for_each(
-                c_players.cbegin(), c_players.cend(),
-                [&registry](const entt::entity& player) {
-                    registry.patch<component::role>(player, [](component::role&
-                                                                   role) {
-                        utility::roles random_role{};
-                        role._primary_role_ct =
-                            magic_enum::enum_cast<utility::roles>(
-                                effolkronium::random_thread_local::get<int>(0,
-                                                                            4))
-                                .value();
-                        role._primary_role_tr =
-                            magic_enum::enum_cast<utility::roles>(
-                                effolkronium::random_thread_local::get<int>(5,
-                                                                            9))
-                                .value();
-                        do
-                        {
-                            random_role =
-                                magic_enum::enum_cast<utility::roles>(
-                                    effolkronium::random_thread_local::get<int>(
-                                        0, 4))
-                                    .value();
-                        } while (random_role == role._primary_role_ct);
-
-                        role._secondary_role_ct = random_role;
-
-                        do
-                        {
-                            random_role =
-                                magic_enum::enum_cast<utility::roles>(
-                                    effolkronium::random_thread_local::get<int>(
-                                        5, 9))
-                                    .value();
-                        } while (random_role == role._primary_role_tr);
-                        role._secondary_role_tr = random_role;
-                    });
-                });
+            std::for_each(c_players.cbegin(), c_players.cend(),
+                          [&registry](const entt::entity& c_player) {
+                              registry.patch<component::role>(c_player,
+                                                              assign_roles);
+                          });
         }
 
     } // namespace
