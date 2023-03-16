@@ -194,19 +194,19 @@ namespace vp::utility
         std::call_once(s_flag, [&sorted_countries_tiers_vector]() {
             std::transform(magic_enum::enum_values<country_code>().cbegin(),
                            magic_enum::enum_values<country_code>().cend(),
-                           s_player_count.begin(),
-                           [](const country_code& c_country, std::size_t xxx) {
-                               xxx = 0;
-                               return std::make_pair(c_country, xxx);
+                           std::inserter(s_player_count, s_player_count.end()),
+                           [](const country_code& c_country) {
+                               return std::make_pair(c_country, 0);
                            });
             std::transform(magic_enum::enum_values<country_code>().cbegin(),
                            magic_enum::enum_values<country_code>().cend(),
-                           s_player_limit.begin(),
+                           std::inserter(s_player_count, s_player_count.end()),
                            [&sorted_countries_tiers_vector](
-                               const country_code& c_country, std::size_t xxx) {
-                               xxx = static_cast<std::size_t>(std::round(
-                                   sorted_countries_tiers_vector.size() *
-                                   c_players_distribuiton.at(c_country)));
+                               const country_code& c_country) {
+                               std::size_t xxx =
+                                   static_cast<std::size_t>(std::round(
+                                       sorted_countries_tiers_vector.size() *
+                                       c_players_distribuiton.at(c_country)));
                                return std::make_pair(c_country, xxx);
                                // ver aqui com o dasmig como arrumar
                            });

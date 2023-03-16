@@ -4,7 +4,7 @@
 
 namespace vp::utility
 {
-    enum class country_code
+    enum class country_code : std::uint8_t
     {
         // players' countries in hltv top 30 world ranking
         international,
