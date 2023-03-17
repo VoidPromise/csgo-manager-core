@@ -15,11 +15,18 @@ namespace vp
 
     bool csgocore::initialize() const noexcept
     {
-        plog::init(plog::verbose, "debug.txt");
+        try
+        {
+            plog::init(plog::verbose, "debug.txt");
 
-        LOG_INFO << "Initializing core engine...";
+            LOG_INFO << "Initializing core engine...";
 
-        return load_configuration() && load_resources();
+            return load_configuration() && load_resources();
+        }
+        catch (const std::exception&)
+        {
+            return false;
+        }
     }
 
     void csgocore::set_user_data(const component::user_data& data) noexcept
@@ -49,13 +56,13 @@ namespace vp
     {
         _registry.clear();
 
-        helper::load_registry(_registry, origin);
+        return helper::load_game(_registry, origin);
     }
 
     bool csgocore::save_state(
         const std::filesystem::path& destination) const noexcept
     {
-        helper::save_registry(_registry, destination);
+        return helper::save_game(_registry, destination);
     }
 
     helper::save_info csgocore::request_save_info(

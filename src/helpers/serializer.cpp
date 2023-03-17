@@ -1,13 +1,9 @@
 #include "serializer.hpp"
 
-#include "cerealfunctions.hpp"
-
-#include <fstream>
-
 namespace vp::helper
 {
-    bool load_registry(entt::registry& registry,
-                       const std::filesystem::path& origin) noexcept
+    bool load_game(entt::registry& registry,
+                   const std::filesystem::path& origin) noexcept
     {
         try
         {
@@ -25,14 +21,14 @@ namespace vp::helper
 
             return true;
         }
-        catch (std::exception& e)
+        catch (std::exception&)
         {
             return false;
         }
     }
 
-    bool save_registry(const entt::registry& registry,
-                       const std::filesystem::path& destination) noexcept
+    bool save_game(const entt::registry& registry,
+                   const std::filesystem::path& destination) noexcept
     {
         try
         {
@@ -42,11 +38,7 @@ namespace vp::helper
 
             std::ofstream output_stream{destination, std::ios::binary};
 
-            std::ofstream output_info_stream{destination, std::ios::binary};
-
             cereal::BinaryOutputArchive output{output_stream};
-
-            cereal::BinaryOutputArchive output_info{output_info_stream};
 
             entt::snapshot{registry}
                 .entities(output)
@@ -56,18 +48,96 @@ namespace vp::helper
                            component::player, component::role, component::skill,
                            component::user_data>(output);
 
+            std::ofstream output_info_stream{destination, std::ios::binary};
+
+            cereal::BinaryOutputArchive output_info{output_info_stream};
+
+            const auto c_info_view{
+                registry.view<component::metadata, component::user_data,
+                              component::game_data>()};
+
             entt::snapshot{registry}
-                .entities(output_info)
                 .component<component::metadata, component::user_data,
-                           component::game_data>(output_info);
+                           component::game_data>(output_info, c_info_view.begin(),
+                                                 c_info_view.end());
 
             return true;
         }
-        catch (std::exception& e)
+        catch (std::exception&)
         {
             return false;
         }
     }
+
+    bool import_players(entt::registry& registry,
+                        const std::filesystem::path& origin) noexcept
+    {
+        try
+        {
+            std::ifstream input_stream{origin, std::ios::binary};
+
+            cereal::BinaryInputArchive input{input_stream};
+
+            entt::registry temp_registry{};
+
+            entt::snapshot_loader{temp_registry}
+                .entities(input)
+                .component<component::age, component::country, component::name,
+                           component::nickname, component::player,
+                           component::role, component::skill>(input)
+                .orphans();
+
+            temp_registry.each([&registry](const entt::entity c_entity) {
+                const entt::entity c_new_entity{registry.create()};
+                registry.emplace<component::player>(c_new_entity);
+                registry.emplace<component::age>(
+                    c_new_entity, registry.get<component::age>(c_entity));
+                registry.emplace<component::country>(
+                    c_new_entity, registry.get<component::country>(c_entity));
+                registry.emplace<component::name>(
+                    c_new_entity, registry.get<component::name>(c_entity));
+                registry.emplace<component::nickname>(
+                    c_new_entity, registry.get<component::nickname>(c_entity));
+                registry.emplace<component::role>(
+                    c_new_entity, registry.get<component::role>(c_entity));
+                registry.emplace<component::skill>(
+                    c_new_entity, registry.get<component::skill>(c_entity));
+            });
+
+            return true;
+        }
+        catch (std::exception&)
+        {
+            return false;
+        }
+    }
+
+    bool export_players(const entt::registry& registry,
+                        const std::filesystem::path& destination) noexcept
+    {
+        try
+        {
+            std::filesystem::path save_path{destination};
+
+            save_path.replace_extension("player");
+
+            std::ofstream output_stream{save_path, std::ios::binary};
+
+            cereal::BinaryOutputArchive output{output_stream};
+
+            entt::snapshot{registry}
+                .component<component::age, component::country, component::name,
+                           component::nickname, component::player,
+                           component::role, component::skill>(output);
+
+            return true;
+        }
+        catch (std::exception&)
+        {
+            return false;
+        }
+    }
+
     save_info load_save_info(const std::filesystem::path& origin) noexcept
     {
         try
@@ -105,7 +175,7 @@ namespace vp::helper
                     c_game_data._current_day,
                     c_user_data._username};
         }
-        catch (const std::exception& e)
+        catch (const std::exception&)
         {
             return save_info{};
         }

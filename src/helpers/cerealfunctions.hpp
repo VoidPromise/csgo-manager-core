@@ -26,14 +26,14 @@ namespace cereal
     template <typename Archive>
     void load(Archive& archive, date::year_month_day& data)
     {
-        short y{0};
-        unsigned char m{0};
-        unsigned char d{0};
+        short year{0};
+        unsigned char month{0};
+        unsigned char day{0};
 
-        archive(y, m, d);
+        archive(year, month, day);
 
         data =
-            date::year_month_day{date::year{y}, date::month{m}, date::day{d}};
+            date::year_month_day{date::year{year}, date::month{month}, date::day{day}};
     }
 
     template <typename Archive>

@@ -1,8 +1,11 @@
 #pragma once
+#include "cerealfunctions.hpp"
 #include "csversion.hpp"
 #include "pch.h"
+#include "player.hpp"
 
 #include <filesystem>
+#include <fstream>
 
 namespace vp::helper
 {
@@ -18,11 +21,17 @@ namespace vp::helper
         std::wstring _username;
     };
 
-    bool load_registry(entt::registry& registry,
+    bool load_game(entt::registry& registry,
                        const std::filesystem::path& origin) noexcept;
 
-    bool save_registry(const entt::registry& registry,
+    bool save_game(const entt::registry& registry,
                        const std::filesystem::path& destination) noexcept;
+
+    bool import_players(entt::registry& registry,
+                        const std::filesystem::path& origin) noexcept;
+
+    bool export_players(const entt::registry& registry,
+                        const std::filesystem::path& destination) noexcept;
 
     save_info load_save_info(const std::filesystem::path& origin) noexcept;
 } // namespace vp::helper
