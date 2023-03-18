@@ -29,6 +29,6 @@ namespace vp::utility
         const char& c_tier_player);
 
     std::vector<country_skill_level> vector_countries_and_tiers_for_players(
-        const int c_players_count);
+        const std::size_t c_players_count);
 
 } // namespace vp::utility

@@ -41,22 +41,6 @@ namespace vp::helper
                                               c_players.cend());
         }
 
-        // void generate_name(component::name& name,
-        //                    const culture c_player_culture)
-        //{
-        //     const std::size_t c_name_count{
-        //         effolkronium::random_thread_local::get<std::size_t>(1, 2)};
-
-        //    const std::size_t c_surname_count{
-        //        effolkronium::random_thread_local::get<std::size_t>(1, 3)};
-
-        //    vp::helper::patch_name(name, gender::m, c_player_culture,
-        //                           c_name_count, c_surname_count);
-        //
-        //
-        //} Não entendi direito como usar, daí fiz como eu sabia e amanhã tu me
-        // explica
-
         void assign_roles(component::role& role)
         {
             role._primary_role_ct = magic_enum::enum_value<utility::roles>(
@@ -114,15 +98,8 @@ namespace vp::helper
                         registry.get<component::country>(player)._culture;
                     registry.patch<component::name>(
                         player, [&culture](component::name& name) {
-                            name._first_name = helper::ng::instance().get_name(
-                                gender::m, culture);
-                            name._last_name =
-                                helper::ng::instance().get_surname(culture);
-                            name._internal_string =
-                                name._first_name + L" " + name._last_name;
-                            name._internal_container.push_back(
-                                name._first_name);
-                            name._internal_container.push_back(name._last_name);
+                            vp::helper::patch_name(name, gender::m, culture, 1,
+                                                   1);
                         });
                     std::wstring name =
                         registry.get<component::name>(player)._internal_string;

@@ -128,6 +128,8 @@ namespace vp::utility
         configs.at(8)._countries_to_draw = {
             magic_enum::enum_values<country_code>().cbegin(),
             magic_enum::enum_values<country_code>().cend()};
+
+        return configs;
     }
 
     void choose_random_countries_for_tier(
@@ -243,18 +245,20 @@ namespace vp::utility
     }
 
     std::vector<country_skill_level> vector_countries_and_tiers_for_players(
-        const int c_players_count)
+        const std::size_t c_players_count)
     {
-        std::vector<country_skill_level> sorted_player_countries_vector{
-            (std::size_t)c_players_count};
+        std::vector<country_skill_level> sorted_player_countries_vector{c_players_count};
         std::vector<country_and_skill_level_limit_settings>
             settings_to_generate = set_settings_to_generate_players();
 
-        for (int i = 0; i < settings_to_generate.size(); i++)
-        {
-            choose_random_countries_for_tier(sorted_player_countries_vector,
-                                             settings_to_generate.at(i));
-        }
+        std::for_each(settings_to_generate.begin(),
+                      settings_to_generate.end(),
+                      [&sorted_player_countries_vector](
+                          country_and_skill_level_limit_settings& c_setting) {
+                          choose_random_countries_for_tier(
+                              sorted_player_countries_vector, c_setting);
+                      });
+
         return sorted_player_countries_vector;
     }
 } // namespace vp::utility
