@@ -3,6 +3,7 @@
 #include "countryenum.hpp"
 
 #include <vector>
+#include <map>
 
 namespace vp::utility
 {
@@ -18,17 +19,23 @@ namespace vp::utility
         std::uint8_t _begin_range;
         std::uint8_t _end_range;
         std::vector<country_code> _countries_to_draw;
+        std::map<country_code, double> _people_distribuiton;
     };
 
-    std::uint8_t tier_get_skill_level(const char& tier);
+    std::vector<country_and_skill_level_limit_settings>
+    set_settings_to_generate_players();
+
+    std::vector<country_and_skill_level_limit_settings>
+    set_settings_to_generate_coaches();
 
     void choose_random_countries_for_tier(
         std::vector<country_skill_level>& sorted_countries_tiers_vector,
-        int& begin_index, const int& c_end_index,
-        const std::vector<country_code>& c_countries_to_draw,
-        const char& c_tier_player);
+        country_and_skill_level_limit_settings& configs);
 
     std::vector<country_skill_level> vector_countries_and_tiers_for_players(
         const std::size_t c_players_count);
+
+    std::vector<country_skill_level> vector_countries_and_tiers_for_coaches(
+        const std::size_t c_coaches_count);
 
 } // namespace vp::utility

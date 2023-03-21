@@ -2,7 +2,7 @@
 
 namespace vp::component
 {
-    struct player
+    struct coach
     {
     };
 } // namespace vp::component

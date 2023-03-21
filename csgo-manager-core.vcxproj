@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="src\components\age.hpp" />
     <ClInclude Include="src\components\attributes.hpp" />
+    <ClInclude Include="src\components\coach.hpp" />
     <ClInclude Include="src\components\community.hpp" />
     <ClInclude Include="src\components\country.hpp" />
     <ClInclude Include="src\components\gamedata.hpp" />

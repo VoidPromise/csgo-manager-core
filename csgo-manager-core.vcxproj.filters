@@ -181,6 +181,9 @@
     <ClInclude Include="src\utilities\vertigopositionsenum.hpp">
       <Filter>CsEnums</Filter>
     </ClInclude>
+    <ClInclude Include="src\components\coach.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\helpers\generator.cpp">

@@ -41,7 +41,7 @@ namespace vp
         helper::generate_tournament_organizers(_registry);
         helper::generate_teams(_registry);*/
         helper::generate_players(_registry);
-        helper::generate_coaches();
+        helper::generate_coaches(_registry);
     }
 
     void csgocore::next_step() noexcept
