@@ -2,17 +2,21 @@
 
 namespace vp::utility
 {
-    enum class roles
+    enum class roles_ct
     {
-        ct_mid,
-        ct_rotator,
-        ct_anchor_a,
-        ct_anchor_b,
-        ct_joker,
-        tr_entry,
-        tr_support,
-        tr_lurker,
-        tr_trader,
-        tr_joker
+        mid,
+        rotator,
+        anchor_a,
+        anchor_b,
+        joker,
+    };
+
+    enum class roles_tr
+    {
+        entry,
+        support,
+        lurker,
+        trader,
+        joker
     };
 } // namespace vp::utility

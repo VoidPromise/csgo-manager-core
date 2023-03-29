@@ -60,9 +60,10 @@ namespace vp
         [[nodiscard]] helper::save_info request_save_info(
             const std::filesystem::path& origin) const noexcept;
 
-      private:
         // Csgocore registry, holds all entities/components.
         entt::registry _registry;
+
+      private:
 
         // Initialize csgocore, no complicated processes.
         csgocore() = default;

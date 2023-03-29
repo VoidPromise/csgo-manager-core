@@ -60,11 +60,15 @@ namespace vp::helper
         }
 
         void assign_roles(component::role& role)
-        {
-            role._primary_role_ct = magic_enum::enum_value<utility::roles>(
-                effolkronium::random_thread_local::get<int>(0, 4));
-            role._primary_role_tr = magic_enum::enum_value<utility::roles>(
-                effolkronium::random_thread_local::get<int>(5, 9));
+        {           
+
+            role._primary_role_ct = 
+                *effolkronium::random_thread_local::get(magic_enum::enum_values<utility::roles_ct>().cbegin(), magic_enum::enum_values<utility::roles_ct>().cend());
+
+            // Assign primary role for role_tr 
+            // Create container with all roles - the primary
+            // Get random with this container for secondary role.
+
             utility::roles random_role{};
             do
             {
