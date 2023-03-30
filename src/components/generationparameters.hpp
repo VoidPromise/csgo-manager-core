@@ -9,7 +9,6 @@ namespace vp::component
 {
     struct generation_parameters
     {
-        std::size_t _players_count;
-        std::size_t _coaches_count;
+        std::size_t _people_count;
     };
 } // namespace vp::component

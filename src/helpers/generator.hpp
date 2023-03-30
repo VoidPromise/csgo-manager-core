@@ -8,34 +8,57 @@ namespace vp::helper
 {
     namespace
     {
-        void insert_player_components(
+        void insert_people_components(
+            entt::registry& registry,
+            const std::vector<entt::entity>& c_people);
+
+        void insert_psychologists_components(
+            entt::registry& registry,
+            const std::vector<entt::entity>& c_psychologists);
+
+        void insert_physical_trainers_components(
+            entt::registry& registry,
+            const std::vector<entt::entity>& c_physical_trainers);
+
+        void insert_players_components(
             entt::registry& registry,
             const std::vector<entt::entity>& c_players);
 
-        void insert_coach_components(
+        void insert_coaches_components(
             entt::registry& registry,
             const std::vector<entt::entity>& c_coaches);
 
         void assign_roles(component::role& role);
 
-        void insert_person_country_skill_level_attributes(
-            entt::registry& registry, const std::vector<entt::entity>& c_people,
-            const std::vector<utility::country_skill_level>&
-                c_countries_and_skill_level);
-
-        void insert_person_name_nickname_attributes(
+        void insert_people_country_skill_level_attributes(
             entt::registry& registry,
             const std::vector<entt::entity>& c_people);
 
-        void insert_player_role_attributes(
+        void insert_people_name_nickname_attributes(
+            entt::registry& registry,
+            const std::vector<entt::entity>& c_people);
+
+        void insert_players_role_attributes(
             entt::registry& registry,
             const std::vector<entt::entity>& c_players);
     } // namespace
 
     void generate_metadata(entt::registry& registry);
 
-    void generate_players(entt::registry& registry);
+    void generate_people(entt::registry& registry);
 
-    void generate_coaches(entt::registry& registry);
+    void generate_players(entt::registry& registry,
+                          const std::vector<entt::entity>& c_players);
+
+    void generate_coaches(entt::registry& registry,
+                          const std::vector<entt::entity>& c_coaches);
+
+    void generate_psychologists(
+        entt::registry& registry,
+        const std::vector<entt::entity>& c_psychologists);
+
+    void generate_physical_trainers(
+        entt::registry& registry,
+        const std::vector<entt::entity>& c_physical_trainers);
 
 } // namespace vp::helper

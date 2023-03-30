@@ -184,6 +184,12 @@
     <ClInclude Include="src\components\coach.hpp">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="src\components\psychologist.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\physicaltrainer.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\helpers\generator.cpp">
@@ -210,6 +216,9 @@
     </ClCompile>
     <ClCompile Include="src\utilities\gunsenum.hpp">
       <Filter>CsEnums</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utilities\generatorconfigs.hpp">
+      <Filter>Utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -11,8 +11,10 @@
 #include "namegen.hpp"
 #include "nickname.hpp"
 #include "nicknamegen.hpp"
+#include "physicaltrainer.hpp"
 #include "player.hpp"
-#include "role.hpp"
+#include "psychologist.hpp"
+#include "rolesenum.hpp"
 #include "skill.hpp"
 
 #include <chrono>
@@ -22,135 +24,105 @@ namespace vp::helper
 {
     namespace
     {
-        void insert_player_components(
+        void insert_people_components(entt::registry& registry,
+                                      const std::vector<entt::entity>& c_people)
+        {
+            registry.insert<component::name>(c_people.cbegin(),
+                                             c_people.cend());
+            registry.insert<component::nickname>(c_people.cbegin(),
+                                                 c_people.cend());
+            registry.insert<component::country>(c_people.cbegin(),
+                                                c_people.cend());
+            registry.insert<component::age>(c_people.cbegin(), c_people.cend());
+        }
+
+        void insert_psychologists_components(
+            entt::registry& registry,
+            const std::vector<entt::entity>& c_psychologists)
+        {
+            registry.insert<component::psychologist>(c_psychologists.cbegin(),
+                                                     c_psychologists.cend());
+        }
+
+        void insert_physical_trainers_components(
+            entt::registry& registry,
+            const std::vector<entt::entity>& c_physical_trainers)
+        {
+            registry.insert<component::physical_trainer>(
+                c_physical_trainers.cbegin(), c_physical_trainers.cend());
+        }
+
+        void insert_players_components(
             entt::registry& registry,
             const std::vector<entt::entity>& c_players)
         {
             registry.insert<component::player>(c_players.cbegin(),
                                                c_players.cend());
-            registry.insert<component::name>(c_players.cbegin(),
-                                             c_players.cend());
-            registry.insert<component::nickname>(c_players.cbegin(),
-                                                 c_players.cend());
-            registry.insert<component::country>(c_players.cbegin(),
-                                                c_players.cend());
-            registry.insert<component::age>(c_players.cbegin(),
-                                            c_players.cend());
             registry.insert<component::role>(c_players.cbegin(),
                                              c_players.cend());
             registry.insert<component::skill>(c_players.cbegin(),
                                               c_players.cend());
         }
 
-        void insert_coach_components(entt::registry& registry,
-                                     const std::vector<entt::entity>& c_coaches)
+        void insert_coaches_components(
+            entt::registry& registry,
+            const std::vector<entt::entity>& c_coaches)
         {
             registry.insert<component::coach>(c_coaches.cbegin(),
                                               c_coaches.cend());
-            registry.insert<component::name>(c_coaches.cbegin(),
-                                             c_coaches.cend());
-            registry.insert<component::nickname>(c_coaches.cbegin(),
-                                                 c_coaches.cend());
-            registry.insert<component::country>(c_coaches.cbegin(),
-                                                c_coaches.cend());
-            registry.insert<component::age>(c_coaches.cbegin(),
-                                            c_coaches.cend());
             registry.insert<component::skill>(c_coaches.cbegin(),
                                               c_coaches.cend());
         }
 
         void assign_roles(component::role& role)
-        {           
+        {
+            std::vector<utility::roles_ct> roles_ct_to_choose{
+                magic_enum::enum_values<utility::roles_ct>().begin(),
+                magic_enum::enum_values<utility::roles_ct>().end()};
 
-            role._primary_role_ct = 
-                *effolkronium::random_thread_local::get(magic_enum::enum_values<utility::roles_ct>().cbegin(), magic_enum::enum_values<utility::roles_ct>().cend());
+            std::vector<utility::roles_tr> roles_tr_to_choose{
+                magic_enum::enum_values<utility::roles_tr>().begin(),
+                magic_enum::enum_values<utility::roles_tr>().end()};
 
-            // Assign primary role for role_tr 
-            // Create container with all roles - the primary
-            // Get random with this container for secondary role.
-
-            utility::roles random_role{};
-            do
-            {
-                random_role = magic_enum::enum_value<utility::roles>(
-                    effolkronium::random_thread_local::get<int>(0, 4));
-            } while (role._primary_role_ct == random_role);
-            role._secondary_role_ct = random_role;
-            do
-            {
-                random_role = magic_enum::enum_value<utility::roles>(
-                    effolkronium::random_thread_local::get<int>(5, 9));
-            } while (role._primary_role_tr == random_role);
-            role._secondary_role_tr = random_role;
+            role._primary_role_ct =
+                *effolkronium::random_thread_local::get(roles_ct_to_choose);
+            std::erase(roles_ct_to_choose, role._primary_role_ct);
+            role._secondary_role_ct =
+                *effolkronium::random_thread_local::get(roles_ct_to_choose);
+            role._primary_role_tr =
+                *effolkronium::random_thread_local::get(roles_tr_to_choose);
+            std::erase(roles_tr_to_choose, role._primary_role_tr);
+            role._secondary_role_tr =
+                *effolkronium::random_thread_local::get(roles_tr_to_choose);
         }
 
-        void insert_person_country_skill_level_attributes(
-            entt::registry& registry, const std::vector<entt::entity>& c_people,
-            const std::vector<utility::country_skill_level>&
-                c_countries_and_skill_level)
+        void insert_people_country_skill_level_attributes(
+            entt::registry& registry, const std::vector<entt::entity>& c_people)
         {
-            std::transform(
-                c_countries_and_skill_level.cbegin(),
-                c_countries_and_skill_level.cend(), c_people.cbegin(),
-                [&registry](utility::country_skill_level& country_skill,
-                            entt::entity& person) {
+            const std::size_t c_people_count{c_people.size()};
+
+            std::for_each(
+                c_people.cbegin(), c_people.cend(),
+                [&registry, &c_people_count](const entt::entity& c_person) {
+                    utility::country_skill_level country_skill =
+                        utility::get_country_skill_level(registry, c_person, c_people_count);
+
                     registry.patch<component::country>(
-                        person, [&country_skill](component::country& country) {
+                        c_person,
+                        [&country_skill](component::country& country) {
                             country._country = country_skill._country;
-                            country._culture = utility::country_to_culture(
-                                country_skill._country);
+                            country._culture =
+                                utility::country_to_culture(country._country);
                         });
+
                     registry.patch<component::skill>(
-                        person, [&country_skill](component::skill& skill) {
+                        c_person, [&country_skill](component::skill& skill) {
                             skill._skill_level = country_skill._skill_level;
                         });
                 });
-
-            // for virou for_each que virou transform, confirma se tá certo, por
-            // favor
-            //
-            // std::for_each(
-            //    c_players.cbegin(), c_players.cend(),
-            //    [&registry,
-            //     &c_countries_and_skill_level](entt::entity& c_player) {
-            //        int i = 0;
-            //        registry.patch<component::country>(
-            //            c_player, [&c_countries_and_skill_level,
-            //                       i](component::country& country) {
-            //                country._country =
-            //                    c_countries_and_skill_level.at(i)._country;
-            //                country._culture = utility::country_to_culture(
-            //                    c_countries_and_skill_level.at(i)._country);
-            //            });
-            //        registry.patch<component::skill>(
-            //            c_player, [&c_countries_and_skill_level,
-            //                       i](component::skill& skill) {
-            //                skill._skill_level =
-            //                    c_countries_and_skill_level.at(i)._skill_level;
-            //            });
-            //    });
-            //
-            // for (int i = 0; i < c_players.size(); i++)
-            //{
-            //    registry.patch<component::country>(
-            //        c_players.at(i), [c_countries_and_skill_level,
-            //                          i](component::country& country) {
-            //            country._country =
-            //                c_countries_and_skill_level.at(i)._country;
-            //            country._culture = utility::country_to_culture(
-            //                c_countries_and_skill_level.at(i)._country);
-            //        });
-            //    registry.patch<component::skill>(
-            //        c_players.at(i),
-            //        [c_countries_and_skill_level, i](component::skill& skill)
-            //        {
-            //            skill._skill_level =
-            //                c_countries_and_skill_level.at(i)._skill_level;
-            //        });
-            //}
         }
 
-        void insert_person_name_nickname_attributes(
+        void insert_people_name_nickname_attributes(
             entt::registry& registry, const std::vector<entt::entity>& c_people)
         {
             std::for_each(
@@ -174,7 +146,7 @@ namespace vp::helper
                 });
         }
 
-        void insert_player_role_attributes(
+        void insert_players_role_attributes(
             entt::registry& registry,
             const std::vector<entt::entity>& c_players)
         {
@@ -196,7 +168,7 @@ namespace vp::helper
             std::uint64_t{0});
 
         registry.ctx().emplace<component::generation_parameters>(
-            std::size_t{600}, std::size_t{120});
+            std::size_t{960});
 
         registry.ctx().emplace<component::game_data>(
             "CS:GO", "Counter Strike: Global Offensive",
@@ -208,43 +180,60 @@ namespace vp::helper
             utility::cs_version::global_offensive, date::March / 01 / 2013);
     }
 
-    void generate_players(entt::registry& registry)
+    void generate_people(entt::registry& registry)
     {
-        const std::size_t c_players_count{
+        const std::size_t c_people_count{
             registry.ctx()
                 .get<component::generation_parameters>()
-                ._players_count};
-        const std::vector<entt::entity> c_players{c_players_count,
-                                                  registry.create()};
-        const std::vector<utility::country_skill_level>
-            c_countries_and_skill_level{
-                utility::vector_countries_and_tiers_for_players(
-                    c_players_count)};
+                ._people_count};
+        const std::vector<entt::entity> c_people{c_people_count,
+                                                 registry.create()};
+        insert_people_components(registry, c_people);
 
-        insert_player_components(registry, c_players);
-        insert_person_country_skill_level_attributes(
-            registry, c_players, c_countries_and_skill_level);
-        insert_person_name_nickname_attributes(registry, c_players);
-        insert_player_role_attributes(registry, c_players);
+        auto players_end_it{c_people.cbegin() +
+                            static_cast<int>(c_people_count * 0.625)};
+        auto coaches_end_it{players_end_it +
+                            static_cast<int>(c_people_count * 0.125)};
+        auto psychologists_end_it{coaches_end_it +
+                                  static_cast<int>(c_people_count * 0.125)};
+
+        generate_players(registry, {c_people.cbegin(), players_end_it - 1});
+        generate_coaches(registry, {players_end_it, coaches_end_it - 1});
+        generate_psychologists(registry,
+                               {coaches_end_it, psychologists_end_it - 1});
+        generate_physical_trainers(registry,
+                                   {psychologists_end_it, c_people.cend()});
     }
 
-    void generate_coaches(entt::registry& registry)
+    void generate_players(entt::registry& registry,
+                          const std::vector<entt::entity>& c_players)
     {
-        const std::size_t c_coaches_count{
-            registry.ctx()
-                .get<component::generation_parameters>()
-                ._coaches_count};
-        const std::vector<entt::entity> c_coaches{c_coaches_count,
-                                                  registry.create()};
-        const std::vector<utility::country_skill_level>
-            c_countries_and_skill_level{
-                utility::vector_countries_and_tiers_for_coaches(
-                    c_coaches_count)};
+        insert_players_components(registry, c_players);
+        insert_people_country_skill_level_attributes(registry, c_players);
+        insert_people_name_nickname_attributes(registry, c_players);
+        insert_players_role_attributes(registry, c_players);
+    }
 
-        insert_coach_components(registry, c_coaches);
-        insert_person_country_skill_level_attributes(
-            registry, c_coaches, c_countries_and_skill_level);
-        insert_person_name_nickname_attributes(registry, c_coaches);
+    void generate_coaches(entt::registry& registry,
+                          const std::vector<entt::entity>& c_coaches)
+    {
+        insert_coaches_components(registry, c_coaches);
+        insert_people_country_skill_level_attributes(registry, c_coaches);
+        insert_people_name_nickname_attributes(registry, c_coaches);
+    }
+
+    void generate_psychologists(
+        entt::registry& registry,
+        const std::vector<entt::entity>& c_psychologists)
+    {
+        insert_psychologists_components(registry, c_psychologists);
+    }
+
+    void generate_physical_trainers(
+        entt::registry& registry,
+        const std::vector<entt::entity>& c_physical_trainers)
+    {
+        insert_physical_trainers_components(registry, c_physical_trainers);
     }
 
 } // namespace vp::helper

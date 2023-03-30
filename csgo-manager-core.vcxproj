@@ -26,6 +26,8 @@
     <ClInclude Include="src\components\country.hpp" />
     <ClInclude Include="src\components\gamedata.hpp" />
     <ClInclude Include="src\components\generationparameters.hpp" />
+    <ClInclude Include="src\components\physicaltrainer.hpp" />
+    <ClInclude Include="src\components\psychologist.hpp" />
     <ClInclude Include="src\components\region.hpp" />
     <ClInclude Include="src\components\role.hpp" />
     <ClInclude Include="src\components\metadata.hpp" />
@@ -83,6 +85,7 @@
     <ClCompile Include="src\utilities\countrychoicefunctions.cpp" />
     <ClCompile Include="src\utilities\countrytoculture.cpp" />
     <ClCompile Include="src\utilities\countrytoregion.cpp" />
+    <ClCompile Include="src\utilities\generatorconfigs.hpp" />
     <ClCompile Include="src\utilities\gunsenum.hpp" />
     <ClCompile Include="src\utilities\skillsenum.hpp" />
     <ClCompile Include="src\utilities\wstringutils.cpp" />
