@@ -21,7 +21,7 @@ namespace vp
 
             LOG_INFO << "Initializing core engine...";
 
-            return load_configuration() && load_resources();
+            return load_resources();
         }
         catch (const std::exception&)
         {
@@ -77,8 +77,9 @@ namespace vp
 
     bool csgocore::load_resources() const noexcept
     {
-        helper::nng::instance().load("");
-        helper::ng::instance().load("");
+        helper::nng::instance().load(
+            "a_csmanager/nickname-generator/resources");
+        helper::ng::instance().load("a_csmanager/name-generator/resources");
 
         return true;
     }
