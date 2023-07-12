@@ -77,9 +77,10 @@ namespace vp
 
     bool csgocore::load_resources() const noexcept
     {
-        helper::nng::instance().load(
-            "a_csmanager/nickname-generator/resources");
-        helper::ng::instance().load("a_csmanager/name-generator/resources");
+        static const std::filesystem::path _current_path =
+            std::filesystem::current_path();
+        helper::ng::instance().load(_current_path / R"(resources/nickname)");
+        helper::nng::instance().load(_current_path / R"(resources/name)");
 
         return true;
     }

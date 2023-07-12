@@ -16,7 +16,12 @@ TEST_CLASS (generatepeople)
 
     TEST_CLASS_INITIALIZE(NewGame)
     {
-        Logger::WriteMessage("tentando carregar recursos no ng e nng");
+        std::string namegen_resource_dir = PROJECTS_FOLDER;
+        std::string nickgen_resource_dir = PROJECTS_FOLDER;
+        namegen_resource_dir.append(R"(name-generator\resources)");
+        nickgen_resource_dir.append(R"(nickname-generator\resources)");
+
+        Logger::WriteMessage("Trying to load the resources from the name generator and the nickname generator");
 
         try
         {
@@ -27,10 +32,10 @@ TEST_CLASS (generatepeople)
                                L"Failed to create temp directory");
             }
 
-            std::filesystem::copy("a_csmanager/name-generator/resources",
+            std::filesystem::copy(namegen_resource_dir,
                                   _current_path / R"(resources/name)",
                                   std::filesystem::copy_options::recursive);
-            std::filesystem::copy("a_csmanager/nickname-generator/resources",
+            std::filesystem::copy(nickgen_resource_dir,
                                   _current_path / R"(resources/nickname)",
                                   std::filesystem::copy_options::recursive);
 
@@ -67,14 +72,45 @@ TEST_CLASS (generatepeople)
         vp::csgocore::instance().initialize();
         vp::csgocore::instance().new_game();
     }
+
+    TEST_CLASS_CLEANUP(CleanupResourcesFolder)
+    {
+        Logger::WriteMessage("Cleaning up the resources folder for "
+                             "name generator tests at: ");
+
+        Logger::WriteMessage(_current_path.c_str());
+
+        try
+        {
+            Assert::IsTrue(std::filesystem::remove_all(_current_path /
+                                                       "resources/name") > 0,
+                           L"Failed to remove resources");
+            Assert::IsFalse(
+                std::filesystem::exists(_current_path / R"(resources/name)"),
+                L"Name folder still exists");
+
+            Logger::WriteMessage("Success cleaning up the resources folder for "
+                                 "name generator tests");
+
+            
+            Assert::IsTrue(std::filesystem::remove_all(
+                               _current_path / "resources/nickname") > 0,
+                           L"Failed to remove resources");
+            Assert::IsFalse(std::filesystem::exists(_current_path /
+                                                    R"(resources/nickname)"),
+                            L"Nickname folder still exists");
+
+            Logger::WriteMessage("Success cleaning up the resources folder for "
+                                 "nickname generator tests");
+        }
+        catch (const std::exception&)
+        {
+            Assert::Fail(L"Exception cleaning up resources");
+        }
+    }
 };
 } // namespace vp::ut
 
-// carregar recursos do namegen e nickgen no initialize do csgocore
-//
-//
-// copiar recursos dos mesmos na pasta de execução do teste
-// limpar as cópias
 //
 // testar que carregou tudo certo
 // testar que criou x peoples, x players, x coaches, etc

@@ -7,7 +7,7 @@
 
 namespace vp::utility
 {
-    struct country_and_skill_limit
+    struct parameters_for_generation
     {
         const double c_distribuition_tier;
         const std::uint8_t c_begin_range;
@@ -15,7 +15,16 @@ namespace vp::utility
         std::vector<country_code> _countries_to_choose;
     };
 
-    static std::vector<country_and_skill_limit>
+    struct generation_limit_control
+    {
+        std::uint8_t s_configs_index;
+        std::uint8_t s_people_count_tier;
+        std::map<country_code, std::size_t> s_countries_count;
+        std::map<country_code, std::size_t> s_countries_limit;
+        std::vector<country_code> s_blacklisted_countries;
+    };
+
+    static std::vector<parameters_for_generation>
         s_players_generator_configs{
             {0.00184,
              94,
@@ -105,20 +114,20 @@ namespace vp::utility
             {0.46295,
              69,
              79,
-             {magic_enum::enum_values<country_code>().cbegin(),
+             {magic_enum::enum_values<country_code>().cbegin()+1,
               magic_enum::enum_values<country_code>().cend()}},
             {0.23148,
              64,
              72,
-             {magic_enum::enum_values<country_code>().cbegin(),
+             {magic_enum::enum_values<country_code>().cbegin()+1,
               magic_enum::enum_values<country_code>().cend()}},
             {1,
              55,
              67,
-             {magic_enum::enum_values<country_code>().cbegin(),
+             {magic_enum::enum_values<country_code>().cbegin()+1,
               magic_enum::enum_values<country_code>().cend()}}};
 
-    static std::vector<country_and_skill_limit>
+    static std::vector<parameters_for_generation>
         s_coaches_generator_configs{
             {0.047,
              81,
@@ -162,16 +171,16 @@ namespace vp::utility
             {0.464,
              69,
              79,
-             {magic_enum::enum_values<country_code>().cbegin(),
+             {magic_enum::enum_values<country_code>().cbegin()+1,
               magic_enum::enum_values<country_code>().cend()}},
             {0.232,
              64,
              72,
-             {magic_enum::enum_values<country_code>().cbegin(),
+             {magic_enum::enum_values<country_code>().cbegin()+1,
               magic_enum::enum_values<country_code>().cend()}},
             {1,
              55,
              67,
-             {magic_enum::enum_values<country_code>().cbegin(),
+             {magic_enum::enum_values<country_code>().cbegin()+1,
               magic_enum::enum_values<country_code>().cend()}}};
 } // namespace vp::utility

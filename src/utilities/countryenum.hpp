@@ -52,6 +52,7 @@ namespace vp::utility
     };
 
     static const inline std::map<country_code, double> PLAYERS_DISTRIBUTION{
+        {country_code::international, 0},
         {country_code::argentina, 0.0322},
         {country_code::australia, 0.0456},
         {country_code::brazil, 0.0972},
@@ -95,6 +96,7 @@ namespace vp::utility
         {country_code::uruguay, 0.0093}};
 
     static const inline std::map<country_code, double> COACHES_DISTRIBUITON{
+        {country_code::international, 0},
         {country_code::argentina, 0.028},
         {country_code::australia, 0.042},
         {country_code::brazil, 0.109},

@@ -15,10 +15,14 @@ namespace vp::utility
         std::uint8_t _skill_level;
     };
 
-    country_skill_level choose_random_countries_for_tier(
-        std::vector<country_and_skill_limit>& configs,
+    generation_limit_control fill_generation_limit(
+        std::vector<parameters_for_generation>& configs,
         const std::map<country_code, double>& countries_distribuiton,
         const std::size_t& c_people_count);
+
+    country_skill_level choose_random_countries_for_tier(
+        std::vector<parameters_for_generation>& configs,
+        generation_limit_control& limits);
 
     country_skill_level get_country_skill_level(
         entt::registry& registry, const entt::entity& c_person,

@@ -105,7 +105,8 @@ namespace vp::helper
                 c_people.cbegin(), c_people.cend(),
                 [&registry, &c_people_count](const entt::entity& c_person) {
                     utility::country_skill_level country_skill =
-                        utility::get_country_skill_level(registry, c_person, c_people_count);
+                        utility::get_country_skill_level(registry, c_person,
+                                                         c_people_count);
 
                     registry.patch<component::country>(
                         c_person,
@@ -186,8 +187,11 @@ namespace vp::helper
             registry.ctx()
                 .get<component::generation_parameters>()
                 ._people_count};
-        const std::vector<entt::entity> c_people{c_people_count,
-                                                 registry.create()};
+
+        std::vector<entt::entity> c_people{c_people_count};
+        std::generate_n(c_people.begin(), c_people_count,
+                        [&registry]() { return registry.create(); });
+
         insert_people_components(registry, c_people);
 
         auto players_end_it{c_people.cbegin() +
@@ -197,10 +201,10 @@ namespace vp::helper
         auto psychologists_end_it{coaches_end_it +
                                   static_cast<int>(c_people_count * 0.125)};
 
-        generate_players(registry, {c_people.cbegin(), players_end_it - 1});
-        generate_coaches(registry, {players_end_it, coaches_end_it - 1});
+        generate_players(registry, {c_people.cbegin(), players_end_it});
+        generate_coaches(registry, {players_end_it, coaches_end_it});
         generate_psychologists(registry,
-                               {coaches_end_it, psychologists_end_it - 1});
+                               {coaches_end_it, psychologists_end_it});
         generate_physical_trainers(registry,
                                    {psychologists_end_it, c_people.cend()});
     }
