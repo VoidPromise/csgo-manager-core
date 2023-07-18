@@ -30,11 +30,11 @@ TEST_CLASS (namegenerator)
                 Assert::IsTrue(std::filesystem::create_directory(_current_path /
                                                                  "resources"),
                                L"Failed to create temp directory");
-            }
 
-            std::filesystem::copy(name_resource_dir,
-                                  _current_path / R"(resources/name)",
-                                  std::filesystem::copy_options::recursive);
+                std::filesystem::copy(name_resource_dir,
+                                      _current_path / R"(resources/name)",
+                                      std::filesystem::copy_options::recursive);
+            }
 
             Assert::IsTrue(
                 std::filesystem::exists(
@@ -180,15 +180,24 @@ TEST_CLASS (namegenerator)
 
         try
         {
-            Assert::IsTrue(std::filesystem::remove_all(_current_path /
-                                                       "resources/name") > 0,
-                           L"Failed to remove resources");
-            Assert::IsFalse(
-                std::filesystem::exists(_current_path / R"(resources/name)"),
-                L"Name folder still exists");
+            if (std::filesystem::exists(_current_path / "resources/name"))
+            {
+                Assert::IsTrue(std::filesystem::remove_all(
+                                   _current_path / "resources/name") > 0,
+                               L"Failed to remove resources");
+                Assert::IsFalse(std::filesystem::exists(_current_path /
+                                                        R"(resources/name)"),
+                                L"Name folder still exists");
 
-            Logger::WriteMessage("Success cleaning up the resources folder for "
-                                 "name generator tests");
+                Logger::WriteMessage(
+                    "Success cleaning up the resources folder for "
+                    "name generator tests");
+            }
+            else
+            {
+                Logger::WriteMessage(
+                    "Resources already deleted by csgo-core-unit-tests");
+            }
         }
         catch (const std::exception&)
         {

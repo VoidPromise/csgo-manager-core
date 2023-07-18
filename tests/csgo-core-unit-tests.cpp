@@ -4,6 +4,10 @@
 #include "nicknamegen.hpp"
 #include "pch.h"
 
+#include "age.hpp"
+#include "coach.hpp"
+#include "player.hpp"
+
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace vp::ut
@@ -21,7 +25,8 @@ TEST_CLASS (generatepeople)
         namegen_resource_dir.append(R"(name-generator\resources)");
         nickgen_resource_dir.append(R"(nickname-generator\resources)");
 
-        Logger::WriteMessage("Trying to load the resources from the name generator and the nickname generator");
+        Logger::WriteMessage("Trying to load the resources from the name "
+                             "generator and the nickname generator");
 
         try
         {
@@ -69,8 +74,18 @@ TEST_CLASS (generatepeople)
 
     TEST_METHOD (Initialization)
     {
-        vp::csgocore::instance().initialize();
-        vp::csgocore::instance().new_game();
+        Assert::IsTrue(vp::csgocore::instance().initialize(),
+                       L"Failed to initialize csgo-core");
+        Assert::IsTrue(vp::csgocore::instance().new_game(),
+                       L"Failed to instantiate a new game");
+
+        auto entity = vp::csgocore::instance()._registry.create();
+
+        auto& reg = vp::csgocore::instance()._registry;
+
+        reg.any_of<vp::component::player, vp::component::coach>(entity);
+
+        auto players = reg.view<vp::component::player>();
     }
 
     TEST_CLASS_CLEANUP(CleanupResourcesFolder)
@@ -89,19 +104,16 @@ TEST_CLASS (generatepeople)
                 std::filesystem::exists(_current_path / R"(resources/name)"),
                 L"Name folder still exists");
 
-            Logger::WriteMessage("Success cleaning up the resources folder for "
-                                 "name generator tests");
-
-            
             Assert::IsTrue(std::filesystem::remove_all(
                                _current_path / "resources/nickname") > 0,
                            L"Failed to remove resources");
+
             Assert::IsFalse(std::filesystem::exists(_current_path /
                                                     R"(resources/nickname)"),
                             L"Nickname folder still exists");
 
             Logger::WriteMessage("Success cleaning up the resources folder for "
-                                 "nickname generator tests");
+                                 "name and nickname");
         }
         catch (const std::exception&)
         {
@@ -111,9 +123,7 @@ TEST_CLASS (generatepeople)
 };
 } // namespace vp::ut
 
-//
-// testar que carregou tudo certo
 // testar que criou x peoples, x players, x coaches, etc
 // testar que não há nomes iguais
 // testar numero de paises
-// tetar numero de rating
+// testar numero de rating

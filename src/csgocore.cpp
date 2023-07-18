@@ -34,13 +34,18 @@ namespace vp
         _registry.ctx().emplace<component::user_data>(data);
     }
 
-    void csgocore::new_game() noexcept
+    bool csgocore::new_game() noexcept
     {
-        helper::generate_metadata(_registry);
-        /*helper::generate_countries(_registry);
-        helper::generate_tournament_organizers(_registry);
-        helper::generate_teams(_registry);*/
-        helper::generate_people(_registry);
+        try
+        {
+            helper::generate_metadata(_registry);
+            helper::generate_people(_registry);
+            return true;
+        }
+        catch (const std::exception&)
+        {
+            return false;
+        }
     }
 
     void csgocore::next_step() noexcept
