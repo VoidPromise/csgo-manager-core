@@ -43,7 +43,7 @@ namespace vp::helper
             const std::vector<entt::entity>& c_players);
     } // namespace
 
-    void generate_metadata(entt::registry& registry);
+    void generate_metadata(entt::registry& registry, std::size_t number_people);
 
     void generate_people(entt::registry& registry);
 

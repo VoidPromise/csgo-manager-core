@@ -160,7 +160,7 @@ namespace vp::helper
 
     } // namespace
 
-    void generate_metadata(entt::registry& registry)
+    void generate_metadata(entt::registry& registry, std::size_t number_people)
     {
         registry.ctx().emplace<component::metadata>(
             std::array<std::uint8_t, 3>({0, 0, 0}),
@@ -169,7 +169,7 @@ namespace vp::helper
             std::uint64_t{0});
 
         registry.ctx().emplace<component::generation_parameters>(
-            std::size_t{960});
+            number_people);
 
         registry.ctx().emplace<component::game_data>(
             "CS:GO", "Counter Strike: Global Offensive",
@@ -194,19 +194,19 @@ namespace vp::helper
 
         insert_people_components(registry, c_people);
 
-        auto players_end_it{c_people.cbegin() +
-                            static_cast<int>(c_people_count * 0.625)};
-        auto coaches_end_it{players_end_it +
+        auto coaches_end_it{c_people.cbegin() +
                             static_cast<int>(c_people_count * 0.125)};
         auto psychologists_end_it{coaches_end_it +
+                            static_cast<int>(c_people_count * 0.125)};
+        auto psycphysical_traines_end_it{psychologists_end_it +
                                   static_cast<int>(c_people_count * 0.125)};
 
-        generate_players(registry, {c_people.cbegin(), players_end_it});
-        generate_coaches(registry, {players_end_it, coaches_end_it});
+        generate_coaches(registry, {c_people.cbegin(), coaches_end_it});
         generate_psychologists(registry,
                                {coaches_end_it, psychologists_end_it});
-        generate_physical_trainers(registry,
-                                   {psychologists_end_it, c_people.cend()});
+        generate_physical_trainers(registry, {psychologists_end_it, psycphysical_traines_end_it});
+        generate_players(registry,
+                         {psycphysical_traines_end_it, c_people.cend()});
     }
 
     void generate_players(entt::registry& registry,

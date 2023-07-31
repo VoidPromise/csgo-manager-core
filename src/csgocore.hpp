@@ -40,7 +40,7 @@ namespace vp
         void set_user_data(const component::user_data& data) noexcept;
 
         // Initialize all necessary resources.
-        bool new_game() noexcept;
+        bool new_game(const std::size_t number_people) noexcept;
 
         // Update game state by one step.
         void next_step() noexcept;

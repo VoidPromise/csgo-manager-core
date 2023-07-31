@@ -6,7 +6,10 @@
 
 #include "age.hpp"
 #include "coach.hpp"
+#include "country.hpp"
+#include "physicaltrainer.hpp"
 #include "player.hpp"
+#include "psychologist.hpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -15,8 +18,19 @@ namespace vp::ut
 TEST_CLASS (generatepeople)
 {
   public:
-    static inline std::filesystem::path _current_path =
+    static const inline std::filesystem::path _current_path =
         std::filesystem::current_path();
+
+    static const inline std::size_t number_people = 960;
+
+    static const inline entt::registry& reg =
+        vp::csgocore::instance()._registry;
+
+    static inline auto players = reg.view<component::player>();
+    static inline auto coachs = reg.view<component::coach>();
+    static inline auto psychologists = reg.view<component::psychologist>();
+    static inline auto physicaltrainers =
+        reg.view<component::physical_trainer>();
 
     TEST_CLASS_INITIALIZE(NewGame)
     {
@@ -76,16 +90,47 @@ TEST_CLASS (generatepeople)
     {
         Assert::IsTrue(vp::csgocore::instance().initialize(),
                        L"Failed to initialize csgo-core");
-        Assert::IsTrue(vp::csgocore::instance().new_game(),
+        Assert::IsTrue(vp::csgocore::instance().new_game(number_people),
                        L"Failed to instantiate a new game");
+        players = reg.view<component::player>();
+        coachs = reg.view<component::coach>();
+        psychologists = reg.view<component::psychologist>();
+        physicaltrainers = reg.view<component::physical_trainer>();
+    }
 
-        auto entity = vp::csgocore::instance()._registry.create();
+    TEST_METHOD (NumberOfPeople)
+    {
+        Assert::IsTrue(players.size() >= number_people * 0.625);
+        Assert::IsTrue(coachs.size() <= number_people * 0.125);
+        Assert::IsTrue(psychologists.size() <= number_people * 0.125);
+        Assert::IsTrue(physicaltrainers.size() <= number_people * 0.125);
 
-        auto& reg = vp::csgocore::instance()._registry;
+        Logger::WriteMessage(
+            ("The number of players is " + std::to_string(players.size()))
+                .c_str());
+        Logger::WriteMessage(
+            ("The number of coachs is " + std::to_string(coachs.size()))
+                .c_str());
+        Logger::WriteMessage(("The number of psychologists is " +
+                              std::to_string(psychologists.size()))
+                                 .c_str());
+        Logger::WriteMessage(("The number of physicaltrainers is " +
+                              std::to_string(physicaltrainers.size()))
+                                 .c_str());
+    }
 
-        reg.any_of<vp::component::player, vp::component::coach>(entity);
-
-        auto players = reg.view<vp::component::player>();
+    TEST_METHOD (NoInternationalPeople)
+    {
+        auto people =
+            reg.view<component::player, component::coach, component::country>();
+        for (auto person : people)
+        {
+            auto country = people.get<component::country>(person)._country;
+            auto country_string = magic_enum::enum_name(country);
+            Assert::IsTrue(country == utility::country_code::brazil);
+            Logger::WriteMessage(
+                ("testando" + std::string(country_string)).c_str());
+        }
     }
 
     TEST_CLASS_CLEANUP(CleanupResourcesFolder)
